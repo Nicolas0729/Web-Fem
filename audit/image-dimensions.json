@@ -1,0 +1,83 @@
+{
+  "https://cdn.instant.so/static/collection/Jj0dg6eJkCbXl1Ji/4v3IexTI8NMEWjsf-vogue-logo-113023.png?width=1280": {
+    "width": 207,
+    "height": 55
+  },
+  "https://cdn.instant.so/static/collection/Jj0dg6eJkCbXl1Ji/Fl8rOks2bEQkSbo4-forbes-logo-113023.png?width=1280": {
+    "width": 204,
+    "height": 52
+  },
+  "https://cdn.instant.so/static/collection/Jj0dg6eJkCbXl1Ji/YotIUXZIjWl9IDyw-womens-health-logo-113023.png?width=1280": {
+    "width": 276,
+    "height": 52
+  },
+  "https://cdn.instant.so/static/collection/Jj0dg6eJkCbXl1Ji/ZUTseaRgrA3FI8NU-cosmopolitan-logo-113023.png?width=1280": {
+    "width": 256,
+    "height": 40
+  },
+  "https://cdn.instant.so/static/collection/Jj0dg6eJkCbXl1Ji/p6gOcFukFkKPGbom-oprah-magazine-logo-113023.png?width=1280": {
+    "width": 246,
+    "height": 44
+  },
+  "https://cdn.instant.so/static/collection/Jj0dg6eJkCbXl1Ji/pVEv4DnWgbBWcAMs-goop-113023.png?width=1280": {
+    "width": 142,
+    "height": 57
+  },
+  "https://cdn.instant.so/static/templates/assets/placeholder-image.svg": {
+    "width": 200,
+    "height": 150
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/0Q1EtaaysyQVi7Ri.png?width=1280": {
+    "error": "The read operation timed out"
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/6Z79TluSC1Xxa6YF.png?width=1280": {
+    "error": "The read operation timed out"
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/EZjsvFPjKnXl4L4j.png?width=1280": {
+    "error": "The read operation timed out"
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/HmMLTkuo2gI6MmWH.png?width=1280": {
+    "width": 1024,
+    "height": 1024
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/J8jY6MU0YxgJJTP7.png?width=1280": {
+    "error": "The read operation timed out"
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/KKV44zkuR23pxC87.png?width=1280": {
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/N2CtPwpluyvLcdzC.png?width=1280": {
+    "width": 864,
+    "height": 1184
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/R5hY8lNYhhCck1IS.png?width=1280": {
+    "width": 1024,
+    "height": 1024
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/YVLNTuJ46uGbed83.png?width=1280": {
+    "width": 864,
+    "height": 1184
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/cUgyozovdj2AgZS2.png?width=1280": {
+    "width": 864,
+    "height": 1184
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/xHBbX7q3Ip6lXLN4.png?width=1280": {
+    "width": 864,
+    "height": 1184
+  },
+  "https://cdn.instant.so/tmp/2026-08-12/xQan2eFKX3O0J77w.png?width=1280": {
+    "width": 1024,
+    "height": 1024
+  },
+  "https://cdn.shopify.com/s/files/1/0611/6999/1768/files/soda-stic.webp?v=1776446068": {
+    "error": "<urlopen error [Errno 54] Connection reset by peer>"
+  },
+  "https://revie.triciclogo.com/images/play.png": {
+    "error": "<urlopen error _ssl.c:1112: The handshake operation timed out>"
+  },
+  "https://revie.triciclogo.com/images/voz.png": {
+    "width": 32,
+    "height": 32
+  }
+}

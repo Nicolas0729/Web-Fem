@@ -1,0 +1,16 @@
+node_modules/
+theme-dev/
+.cache/
+.env*
+!.env.example
+*.log
+.DS_Store
+branding/
+output/
+tmp/
+theme/
+audit/*
+!audit/image-dimensions.json
+!audit/redirects.json
+!audit/sitemap-urls.json
+!audit/storefront-products.json

@@ -1,0 +1,31 @@
+:root {
+  --fem-font-body: 'Poppins', sans-serif;
+  --fem-font-editorial: 'Behind The Nineties Sans', serif;
+  --fem-color-rose: #df8585;
+  --fem-color-coral: #de5d46;
+  --fem-color-text: #000;
+  --fem-color-surface: #fff;
+  --fem-color-focus: #9f3838;
+  --fem-radius-pill: 99px;
+  --fem-radius-card: 8px;
+  --fem-content-width: 1280px;
+  --fem-space-xs: 8px;
+  --fem-space-sm: 16px;
+  --fem-space-md: 24px;
+  --fem-space-lg: 40px;
+  --fem-transition: 180ms ease;
+}
+:where(a,button,input,select,textarea,summary):focus-visible {
+  outline: 2px solid var(--fem-color-focus);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .instant-scroll-trigger--hidden { opacity: 1 !important; transform: none !important; }
+}
+
+/* Decorative builder layers must not intercept the native video controls. */
+.fem-community-video .instant-video-fill__overlay,
+.fem-community-video .instant-video__fallback { pointer-events: none; }
+.fem-community-video .instant-video__fallback[hidden] { display: none !important; }
+.fem-community-video video { z-index: 1; }
