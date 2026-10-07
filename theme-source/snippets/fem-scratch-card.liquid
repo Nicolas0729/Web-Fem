@@ -1,0 +1,29 @@
+{% doc %}
+  Scratch card for the existing Fem welcome form; redemption stays with Klaviyo.
+  @example
+  {% render 'fem-scratch-card' %}
+{% enddoc %}
+{{ 'fem-scratch-card.css' | asset_url | stylesheet_tag }}
+<template id="fem-scratch-template" data-form-id="QX2wGL"
+  data-redemption-title="{{ 'fem_scratch.redemption_title' | t | escape }}"
+  data-redemption-copy="{{ 'fem_scratch.redemption_copy' | t | escape }}">
+  <section class="fem-scratch" aria-label="{{ 'fem_scratch.title' | t | escape }}">
+    <div class="fem-scratch__brand" aria-hidden="true">Fem<span>♥</span></div>
+    <p class="fem-scratch__eyebrow">{{ 'fem_scratch.eyebrow' | t }}</p>
+    <h2 class="fem-scratch__title">{{ 'fem_scratch.title' | t }}</h2>
+    <p class="fem-scratch__intro">{{ 'fem_scratch.intro' | t }}</p>
+    <div class="fem-scratch__ticket">
+      <div class="fem-scratch__prize" aria-hidden="true">
+        <span>{{ 'fem_scratch.prize' | t }}</span>
+        <strong>10<span>%</span></strong>
+        <span>{{ 'fem_scratch.purchase' | t }}</span>
+      </div>
+      <div class="fem-scratch__cover" aria-hidden="true">
+        <canvas width="720" height="420"></canvas>
+        <div class="fem-scratch__cover-label"><span>✧</span><strong>{{ 'fem_scratch.scratch' | t }}</strong><small>{{ 'fem_scratch.gesture' | t }}</small></div>
+      </div>
+    </div>
+    <p class="fem-scratch__status" role="status" aria-live="polite" data-revealed="{{ 'fem_scratch.revealed' | t | escape }}"></p>
+    <p class="fem-scratch__steps" aria-hidden="true">{{ 'fem_scratch.steps' | t }}</p>
+  </section>
+</template>

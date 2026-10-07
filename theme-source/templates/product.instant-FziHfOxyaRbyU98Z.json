@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-FziHfOxyaRbyU98Z": {
-      "type": "instant-FziHfOxyaRbyU98Z",
+    "fem-product-probioticos": {
+      "type": "fem-product-probioticos",
       "settings": {}
     }
   },
   "order": [
-    "instant-FziHfOxyaRbyU98Z"
+    "fem-product-probioticos"
   ]
 }
 

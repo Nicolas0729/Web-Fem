@@ -170,8 +170,8 @@
         "padding-block-end": 48
       }
     },
-    "instant_jk0i_o6_al_drfmfm6c_NbPhEB": {
-      "type": "instant-jk0iO6ALDrfmfm6c",
+    "fem_view_jk0i_o6_al_drfmfm6c_NbPhEB": {
+      "type": "fem-collections",
       "name": "Coleciones",
       "settings": {
         "text_hwMPwROlvaXemD50-2": "<h3>Colecciones</h3>",
@@ -198,7 +198,7 @@
   },
   "order": [
     "collection_list_Wfgh3m",
-    "instant_jk0i_o6_al_drfmfm6c_NbPhEB"
+    "fem_view_jk0i_o6_al_drfmfm6c_NbPhEB"
   ]
 }
 

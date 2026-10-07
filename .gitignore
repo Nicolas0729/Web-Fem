@@ -8,6 +8,7 @@ theme-dev/
 branding/
 output/
 tmp/
+work/
 theme/
 audit/*
 !audit/image-dimensions.json

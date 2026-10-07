@@ -4,10 +4,13 @@ import {join,basename} from 'node:path';
 import {STORE_ORIGIN} from '../src/lib/navigation.ts';
 import {checkoutPermalink,type CheckoutLine} from '../src/lib/checkout.ts';
 import {transformStorefront} from './transform.ts';
+import {sendBody} from './response.ts';
+import {readAsset} from './assets.ts';
+import {restoreSearchResults} from './search.ts';
 const port=Number(process.env.PORT ?? 3000);
 const redirectData=JSON.parse(await readFile('audit/redirects.json','utf8')) as {path:string;target:string}[];
 const redirects=new Map(redirectData.map(row=>[row.path,row.target]));
-const mime:Record<string,string>={css:'text/css',js:'text/javascript',svg:'image/svg+xml',json:'application/json',woff2:'font/woff2'};
+const mime:Record<string,string>={css:'text/css',js:'text/javascript',svg:'image/svg+xml',json:'application/json',woff2:'font/woff2',ttf:'font/ttf',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',mp4:'video/mp4'};
 const upstreamPaths=/^\/(?:$|products(?:\/|\.json)|collections(?:\/|$|\.json)|pages\/|blogs\/|policies\/|search(?:\/|$|\.json)|cart(?:\/|$|\.js)|cdn\/|recommendations\/|localization|robots\.txt|sitemap.*\.xml|favicon\.ico)/;
 async function body(req:IncomingMessage):Promise<Buffer> {
   const chunks:Buffer[]=[];let length=0;
@@ -23,7 +26,34 @@ async function serve(req:IncomingMessage,res:ServerResponse):Promise<void> {
     const name=decodeURIComponent(url.pathname.slice('/__theme/'.length));
     if(name!==basename(name)||name.includes('\0')){res.writeHead(400).end();return;}
     const file=join(process.cwd(),'theme-dev/assets',name);
-    try{await stat(file);res.setHeader('Content-Type',mime[name.split('.').pop()!]??'application/octet-stream');res.setHeader('Cache-Control','no-cache');res.end(await readFile(file));}catch{res.writeHead(404).end('Asset not found');}return;
+    try{
+      const metadata=await stat(file);
+      if(!metadata.isFile()){res.writeHead(404).end();return;}
+      const etag=`W/"${metadata.size.toString(16)}-${metadata.mtimeMs.toString(16)}"`;
+      res.setHeader('Content-Type',mime[name.split('.').pop()!]??'application/octet-stream');
+      res.setHeader('Cache-Control','no-cache');
+      res.setHeader('ETag',etag);
+      if(['GET','HEAD'].includes(req.method??'GET') && req.headers['if-none-match']?.split(',').map(v=>v.trim()).includes(etag)){
+        res.writeHead(304).end();return;
+      }
+      const data=await readAsset(file,etag);
+      if(name.endsWith('.mp4')){
+        res.setHeader('Accept-Ranges','bytes');
+        const range=req.method==='GET' && !req.headers['if-range'] ? req.headers.range : undefined;
+        if(range){
+          const match=/^bytes=(\d*)-(\d*)$/.exec(range);
+          const start=match?.[1] ? Number(match[1]) : Math.max(0,data.length-Number(match?.[2]));
+          const end=match?.[1] && match[2] ? Math.min(Number(match[2]),data.length-1) : data.length-1;
+          if(!match || (!match[1] && !match[2]) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start>end || start>=data.length){
+            res.writeHead(416,{'Content-Range':`bytes */${data.length}`}).end();return;
+          }
+          res.statusCode=206;
+          res.setHeader('Content-Range',`bytes ${start}-${end}/${data.length}`);
+          await sendBody(req,res,data.subarray(start,end+1));return;
+        }
+      }
+      await sendBody(req,res,data);
+    }catch{res.writeHead(404).end('Asset not found');}return;
   }
   if(url.pathname==='/__review'){
     res.setHeader('Content-Type','text/html; charset=utf-8');res.end(await readFile('docs/review.html','utf8'));return;
@@ -62,7 +92,10 @@ async function serve(req:IncomingMessage,res:ServerResponse):Promise<void> {
   if(location){const target=new URL(location,STORE_ORIGIN);res.setHeader('Location',target.origin===STORE_ORIGIN&&!/^\/(checkouts|account|customer_authentication|discount|apps|challenge)(\/|$)/.test(target.pathname)?target.pathname+target.search+target.hash:target.href);res.end();return;}
   const type=upstream.headers.get('content-type')??'application/octet-stream';res.setHeader('Content-Type',type);
   if(method==='HEAD'){res.end();return;}
-  if(type.includes('text/html'))res.end(transformStorefront(await upstream.text()));
+  if(type.includes('text/html')){
+    const html=await restoreSearchResults(await upstream.text(),url,headers);
+    await sendBody(req,res,transformStorefront(html,url.pathname));
+  }
   else if(type.includes('application/json')) {
     const data:unknown=await upstream.json();
     const transformSections=(value:unknown):unknown=>{
@@ -71,7 +104,7 @@ async function serve(req:IncomingMessage,res:ServerResponse):Promise<void> {
       if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([key,item])=>[key,transformSections(item)]));
       return value;
     };
-    res.end(JSON.stringify(transformSections(data)));
+    await sendBody(req,res,JSON.stringify(transformSections(data)));
   }
   else res.end(Buffer.from(await upstream.arrayBuffer()));
 }

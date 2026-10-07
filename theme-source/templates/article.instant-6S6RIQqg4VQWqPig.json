@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-6S6RIQqg4VQWqPig": {
-      "type": "instant-6S6RIQqg4VQWqPig",
+    "fem-blog": {
+      "type": "fem-blog",
       "settings": {}
     }
   },
   "order": [
-    "instant-6S6RIQqg4VQWqPig"
+    "fem-blog"
   ]
 }
 

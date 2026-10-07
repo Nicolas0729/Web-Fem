@@ -1,0 +1,63 @@
+{% render 'fem-home-icons', section: section %}
+{{ 'fem-fonts.css' | asset_url | stylesheet_tag }}
+<div class="fem-native fem-home" data-section-id="{{ section.id }}">
+  {%- liquid
+    assign preload = true
+    if section.location == 'footer'
+      assign preload = false
+    elsif section.location == 'template' and section.index > 2
+      assign preload = false
+    endif
+  -%}
+  {{ 'fem-home.css' | asset_url | stylesheet_tag: preload: preload -}}
+  <style>
+    @font-face {
+      font-family: 'Behind The Nineties Sans';
+      src: url('{{ 'fem-behind-the-nineties-sans-bd-it-6a2c3006.woff2' | asset_url }}') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Behind The Nineties Sans';
+      src: url('{{ 'fem-behind-the-nineties-sans-xbd-it-f489499c.woff2' | asset_url }}') format('woff2');
+      font-weight: 800;
+      font-display: swap;
+    }
+  </style>
+<div class="fem-home__root">
+  {% render 'fem-home-hero', section: section %}
+  {% render 'fem-home-marquee', section: section %}
+  {% render 'fem-home-bestsellers', section: section %}
+  {% render 'fem-home-subscription', section: section %}
+  {% render 'fem-home-trust', section: section %}
+  {% render 'fem-home-experts', section: section %}
+  {% render 'fem-home-community', section: section %}
+  {% render 'fem-home-press', section: section %}
+  {% render 'fem-home-faq', section: section %}
+  {% render 'fem-home-featured', section: section %}
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Inicio Fem",
+  "settings": [
+    {"type":"text","id":"hero_heading","label":"Título de portada","default":"Salud femenina"},
+    {"type":"textarea","id":"hero_description","label":"Descripción de portada","default":"Fem Probiotics es tu aliado diario para el equilibrio íntimo, con probióticos, prebióticos y cuidado externo."},
+    {"type":"text","id":"hero_shop_label","label":"Texto del botón de compra","default":"Compra ahora"},
+    {"type":"url","id":"hero_shop_link","label":"Enlace de compra","default":"/collections/todos-los-productos"},
+    {"type":"text","id":"hero_quiz_label","label":"Texto del botón del test","default":"Hacer test"},
+    {"type":"url","id":"hero_quiz_link","label":"Enlace del test","default":"/pages/quiz1"},
+    {"type":"text","id":"hero_shipping","label":"Beneficio de envío","default":"Envío gratis"},
+    {"type":"text","id":"hero_guarantee","label":"Garantía","default":"Garantía de devolución de 30 días."},
+    {"type":"text","id":"hero_studies","label":"Beneficio: estudios","default":"Respaldado por estudios clínicos"},
+    {"type":"text","id":"hero_experts","label":"Beneficio: expertas","default":"Recomendado por expertas"},
+    {"type":"text","id":"hero_formula","label":"Beneficio: fórmula","default":"Fórmula libre de sustancias nocivas"},
+    {"type":"text","id":"hero_ingredients","label":"Beneficio: ingredientes","default":"Ingredientes 100% naturales"},
+    {"type":"image_picker","id":"hero_image","label":"Imagen de portada"},
+    {"type":"text","id":"hero_image_alt","label":"Descripción de la imagen","default":"Fem con prebióticos y probióticos, frasco de 60 unidades"},
+    {"type":"color","id":"hero_background","label":"Fondo de portada","default":"#ffacac"},
+    {"type":"color","id":"hero_accent","label":"Botones e iconos de portada","default":"#f17e7e"}
+  ]
+}
+{% endschema %}

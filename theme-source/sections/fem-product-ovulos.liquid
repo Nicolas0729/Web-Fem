@@ -1,0 +1,925 @@
+
+<div class="fem-view iAu60canUCGIMViZY" data-fem-id="Au60canUCGIMViZY" data-fem-layout="PRODUCT_TEMPLATE" data-section-id="{{ section.id }}" data-fem-money-format="{{ shop.money_format | escape }}">
+  {%- liquid
+    assign preload = true
+    if section.location == 'footer'
+      assign preload = false
+    elsif section.location == 'template' and section.index > 2
+      assign preload = false
+    endif
+  -%}
+  {{ 'fem-product-ovulos.css' | asset_url | stylesheet_tag: preload: preload -}}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;family=Montserrat:wght@400&amp;display=swap" rel="stylesheet">
+  {%- liquid
+    assign product_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image
+  -%}
+  <form data-fem-type="root" class="iXWq4mUQvEoGZTKex" data-fem-form-product-url="{{ product.url }}" data-fem-form-variant-id="{{ product.selected_or_first_available_variant.id }}" data-fem-form-product-id="{{ product.id }}"
+    ><div conditionals="" class="iuN6APAIQaiKJ7b2A" data-fem-type="container" id="iuN6APAIQaiKJ7b2A"
+      ><div conditionals="" class="il3q6Y9V6ctgssi1j" data-fem-type="container"
+        ><div class="illISYxDKHduQrTHw" data-fem-type="container"
+          ><div class="fem-view-slider-container iCsLmQhUOeUaDrUbT" data-fem-type="slider-container"
+            ><div class="fem-view-slider-container ioyVJfePMv4XBF6te" data-fem-type="slider-container">
+              <script type="application/json" id="fem-view-slider-iPUgjgoqfIKVgbtaR-params">{"breakpoints":{"0":{"speed":300,"direction":"horizontal","autoHeight":false,"slidesPerView":5,"freeMode":false,"centeredSlides":false,"centerInsufficientSlides":false,"spaceBetween":16},"576":{"speed":300,"direction":"horizontal","autoHeight":false,"slidesPerView":5,"freeMode":false,"centeredSlides":false,"centerInsufficientSlides":false,"spaceBetween":16}},"loop":false,"autoplay":false}</script>
+              <div class="fem-view-slider fem-view-slider-thumbs iPUgjgoqfIKVgbtaR" data-fem-slider-id="EFeI0LetZjKkB54F" id="iPUgjgoqfIKVgbtaR" data-fem-type="thumbnails"
+                ><div class="fem-view-slider-wrapper">
+                  {%- liquid
+                    assign media_without_variant = '' | split: ''
+                    assign featured_image = product.selected_or_first_available_variant.featured_image | default: product_image
+
+                    for media_item in product.media
+                      if media_item.media_type == 'image'
+                        if media_item.media_type == 'image' and media_item.preview_image.src != featured_image.src
+                          assign media_element = media_item | sort
+                          assign media_without_variant = media_without_variant | concat: media_element
+                        endif
+                      endif
+                    endfor
+
+                    assign sorted_media = featured_image | sort | concat: media_without_variant
+                  -%}
+                  {%- for media in sorted_media -%}
+                    {%- if forloop.length > 0 -%}
+                      {%- assign repeater_index_C4766g8zsFTfbJz5 = forloop.index0 -%}
+                      <div class="fem-view-slider-slide iC4766g8zsFTfbJz5" data-fem-type="slider-slide"
+                        ><div data-fem-type="media" class="i9HUrHYiyl5zH2fNl">
+                          {%- if media.media_type == 'video' -%}
+                            <div class="fem-view-media fem-view-video__container fem-view-media fem-view-image fem-view-image__main"
+                              ><article class="fem-view-video__wrapper" data-title="{{ media.alt }}" data-src="{%- if media.media_type == 'video' -%}{%- assign mp4_source = media.sources | where: 'format', 'mp4' | first -%}{{ mp4_source.url | default: media.sources[0].url }}{%- else -%}{{ media | image_url: width: 1280 }}{%- endif -%}" data-type="external" style="background-image:url({{ media.preview_image.src | image_url: width: 1280 }})"
+                                ><span style="--video-button-color:#ffffff" class="fem-view-video__button fem-view-external__button fem-view-video__thumbnail-slider-button" type="button" aria-label="Watch {{ media.alt }}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 256 256">
+                                    <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+                                  </svg></span></article
+                              ><span aria-hidden="true"><img class="fem-view-video__sizer" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27500%27%20height=%27281.25%27/%3e"></span
+                            ></div>
+                          {%- else -%}
+                            <img alt="{{ media.alt }}" src="{%- if media.media_type == 'video' -%}{%- assign mp4_source = media.sources | where: 'format', 'mp4' | first -%}{{ mp4_source.url | default: media.sources[0].url }}{%- else -%}{{ media | image_url: width: 1280 }}{%- endif -%}" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{%- if media.media_type == 'video' -%}{%- assign mp4_source = media.sources | where: 'format', 'mp4' | first -%}{{ mp4_source.url | default: media.sources[0].url }}{%- else -%}{{ media | image_url: width: 1080 }} 1080w, {{ media | image_url: width: 828 }} 828w, {{ media | image_url: width: 750 }} 750w, {{ media | image_url: width: 640 }} 640w, {{ media | image_url: width: 360 }} 360w, {{ media | image_url: width: 1280 }} 1280w{%- endif -%}" data-fem-dynamic-content-source="REPEATER" decoding="async" loading="eager" fetchpriority="high" class="fem-view-media fem-view-image fem-view-image__main" data-fem-repeater-id="C4766g8zsFTfbJz5" data-fem-repeater-index="{{ repeater_index_C4766g8zsFTfbJz5 }}">
+                          {%- endif -%}</div
+                      ></div>
+                    {%- endif -%}
+                  {%- endfor -%}</div></div></div
+            ><div class="iyW4DvmTXLmX0BBLH" data-fem-type="container">
+              <script type="application/json" id="fem-view-slider-iEFeI0LetZjKkB54F-params">{"breakpoints":{"0":{"speed":300,"direction":"horizontal","autoHeight":false,"slidesPerView":1,"freeMode":false,"centeredSlides":true,"centerInsufficientSlides":true,"spaceBetween":0},"576":{"speed":300,"direction":"horizontal","autoHeight":false,"slidesPerView":1,"freeMode":false,"centeredSlides":true,"centerInsufficientSlides":true,"spaceBetween":0},"769":{"speed":300,"direction":"horizontal","autoHeight":false,"slidesPerView":1,"freeMode":false,"centeredSlides":true,"centerInsufficientSlides":true,"spaceBetween":0}},"loop":false,"autoplay":false}</script>
+              <div class="fem-view-slider iEFeI0LetZjKkB54F" data-fem-slider-id="EFeI0LetZjKkB54F" id="iEFeI0LetZjKkB54F" data-fem-type="slider"
+                ><div class="fem-view-slider-wrapper">
+                  {%- liquid
+                    assign media_without_variant = '' | split: ''
+                    assign featured_image = product.selected_or_first_available_variant.featured_image | default: product_image
+
+                    for media_item in product.media
+                      if media_item.media_type == 'image'
+                        if media_item.media_type == 'image' and media_item.preview_image.src != featured_image.src
+                          assign media_element = media_item | sort
+                          assign media_without_variant = media_without_variant | concat: media_element
+                        endif
+                      endif
+                    endfor
+
+                    assign sorted_media = featured_image | sort | concat: media_without_variant
+                  -%}
+                  {%- for media in sorted_media -%}
+                    {%- if forloop.length > 0 -%}
+                      {%- assign repeater_index_bSavwx3kAFT66xAY = forloop.index0 -%}
+                      <div class="fem-view-slider-slide ibSavwx3kAFT66xAY" data-fem-type="slider-slide"
+                        ><button data-fem-type="media" class="iUMn2RppvcbC7j4EQ" data-fem-action-type="open-overlay" data-fem-overlay-active-slide="{{ repeater_index_bSavwx3kAFT66xAY }}" data-fem-action-id="bSavwx3kAFT66xAY-lightbox" type="button">
+                          {%- if media.media_type == 'video' -%}
+                            <div class="fem-view-media fem-view-video__container fem-view-media fem-view-image fem-view-image__main"
+                              ><article class="fem-view-video__wrapper" data-title="{{ media.alt }}" data-src="{%- if media.media_type == 'video' -%}{%- assign mp4_source = media.sources | where: 'format', 'mp4' | first -%}{{ mp4_source.url | default: media.sources[0].url }}{%- else -%}{{ media | image_url: width: 1280 }}{%- endif -%}" data-type="external" style="background-image:url({{ media.preview_image.src | image_url: width: 1280 }})"
+                                ><span style="--video-button-color:#ffffff" class="fem-view-video__button fem-view-external__button" type="button" aria-label="Watch {{ media.alt }}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 256 256">
+                                    <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+                                  </svg></span></article
+                              ><span aria-hidden="true"><img class="fem-view-video__sizer" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27500%27%20height=%27281.25%27/%3e"></span
+                            ></div>
+                          {%- else -%}
+                            <img alt="{{ media.alt }}" src="{%- if media.media_type == 'video' -%}{%- assign mp4_source = media.sources | where: 'format', 'mp4' | first -%}{{ mp4_source.url | default: media.sources[0].url }}{%- else -%}{{ media | image_url: width: 1280 }}{%- endif -%}" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{%- if media.media_type == 'video' -%}{%- assign mp4_source = media.sources | where: 'format', 'mp4' | first -%}{{ mp4_source.url | default: media.sources[0].url }}{%- else -%}{{ media | image_url: width: 1080 }} 1080w, {{ media | image_url: width: 828 }} 828w, {{ media | image_url: width: 750 }} 750w, {{ media | image_url: width: 640 }} 640w, {{ media | image_url: width: 360 }} 360w, {{ media | image_url: width: 1280 }} 1280w{%- endif -%}" data-fem-dynamic-content-source="REPEATER" decoding="async" loading="eager" fetchpriority="high" class="fem-view-media fem-view-image fem-view-image__main" data-fem-repeater-id="bSavwx3kAFT66xAY" data-fem-repeater-index="{{ repeater_index_bSavwx3kAFT66xAY }}">
+                          {%- endif -%}
+                        </button>
+                        {%- assign fem_view_lightbox_z_index = 1000 -%}
+                        <!--  -->
+                        {%- if forloop.index0 == 0 -%}
+                          <div data-state="closed" data-fem-overlay-pointer-events="AUTO" data-fem-type="overlay" class="ibSavwx3kAFT66xAY-lightbox fem-view-overlay fem-view-overlay--lightbox" id="ibSavwx3kAFT66xAY-lightbox" style="z-index:{{ fem_view_lightbox_z_index }}"
+                            ><div class="fem-view-slider-container" data-fem-type="slider-container">
+                              <script type="application/json" id="fem-view-slider-ibSavwx3kAFT66xAY-lightbox-params">{"breakpoints":{"1025":{"spaceBetween":40}},"loop":false,"autoplay":false}</script>
+                              <div class="fem-view-slider ibSavwx3kAFT66xAY-lightbox" data-fem-slider-id="bSavwx3kAFT66xAY-lightbox" id="ibSavwx3kAFT66xAY-lightbox" data-fem-type="slider"
+                                ><div class="fem-view-slider-wrapper">
+                                  {%- liquid
+                                    assign media_without_variant = '' | split: ''
+                                    assign featured_image = product.selected_or_first_available_variant.featured_image | default: product_image
+                                    for media_item in product.media
+                                      if media_item.media_type == 'image'
+                                        if media_item.media_type == 'image' and media_item.preview_image.src != featured_image.src
+                                          assign media_element = media_item | sort
+                                          assign media_without_variant = media_without_variant | concat: media_element
+                                        endif
+                                      endif
+                                    endfor
+
+                                    assign sorted_media = featured_image | sort | concat: media_without_variant
+                                  -%}
+                                  {%- for media in sorted_media -%}
+                                    {%- if forloop.length > 0 -%}
+                                      {%- assign repeater_index_bSavwx3kAFT66xAY = forloop.index0 -%}
+                                      <div class="fem-view-slider-slide">
+                                        <img
+                                          alt="{{ media.alt }}"
+                                          src="{{ media | image_url: width: 3840 }}"
+                                          data-fem-dynamic-content-source="REPEATER"
+                                          data-fem-repeater-id="bSavwx3kAFT66xAY"
+                                          data-fem-repeater-index="{{ repeater_index_bSavwx3kAFT66xAY }}"
+                                          width="{{ media.width }}"
+                                          height="{{ media.height }}"
+                                          sizes="(max-width: 3840px) 100vw, 3840px"
+                                          srcSet="{{ media | image_url: width: 2048 }} 2048w, {{ media | image_url: width: 1920 }} 1920w, {{ media | image_url: width: 1200 }} 1200w, {{ media | image_url: width: 1080 }} 1080w, {{ media | image_url: width: 828 }} 828w, {{ media | image_url: width: 750 }} 750w, {{ media | image_url: width: 640 }} 640w, {{ media | image_url: width: 360 }} 360w, {{ media | image_url: width: 3840 }} 3840w"
+                                          decoding="async"
+                                          loading="lazy"
+                                          fetchpriority="auto"
+                                          class="fem-view-media fem-view-image fem-view-image__main"
+                                          style="object-fit:contain"
+                                        >
+                                        <!--  -->
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endfor -%}
+                                </div></div
+                              ><button class="fem-view-overlay--lightbox__button-prev" aria-label="Go to previous image">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="rgba(255, 255, 255, 1)" viewBox="0 0 256 256">
+                                  <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
+                                </svg></button
+                              ><button class="fem-view-overlay--lightbox__button-next" aria-label="Go to next image">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="rgba(255, 255, 255, 1)" viewBox="0 0 256 256">
+                                  <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"></path>
+                                </svg></button></div
+                            ><button class="fem-view-overlay--lightbox__button-close" aria-label="Close lightbox" data-fem-action-type="open-overlay" data-fem-action-id="bSavwx3kAFT66xAY-lightbox">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="rgba(0, 0, 0, 1)" viewBox="0 0 256 256">
+                                <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                              </svg></button
+                          ></div>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}</div></div
+              ><button class="fem-view-slider-button fem-view-slider-button-prev fem-view-slider-EFeI0LetZjKkB54F-button-prev iPo05SggoKPzW3py4" data-fem-type="slider-button-prev" type="button"
+                ><div data-fem-type="icon" class="iyKI1iOWx27JmEZdI">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>arrow-left</title><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+                  </svg></div></button
+              ><button class="fem-view-slider-button fem-view-slider-button-next fem-view-slider-EFeI0LetZjKkB54F-button-next iIFwiyHlzg8R8cjNW" data-fem-type="slider-button-next" type="button"
+                ><div data-fem-type="icon" class="i3it4NF4sXFZYOcui">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>arrow-right</title><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
+                  </svg></div></button></div></div></div
+        ><div conditionals="" class="iCf5RXHo1HnI2Fl3c" data-fem-type="container"
+          ><div class="iTDRp7hquJs5rN66k" data-fem-type="container"
+            ><h3 data-fem-dynamic-content-source="TITLE" data-fem-type="text" class="iRDSl4COzkbO5Y0rl">{{ product.title }}</h3
+            ><div class="ivir9IybECxBhv0Q9" data-fem-type="container"
+              ><div data-fem-type="icon" class="i6cexCBRedD41aJvS">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                </svg></div
+              ><div data-fem-type="icon" class="i2t2g0mUQh84bm2MI">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                </svg></div
+              ><div data-fem-type="icon" class="i73U9p0SsJFzSOXne">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                </svg></div
+              ><div data-fem-type="icon" class="iFzEosrVHa1c3Amd3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                </svg></div
+              ><div data-fem-type="icon" class="iKlJPh49zfYYZWrjn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                </svg></div
+              ><div data-fem-type="text" class="fem-view-rich-text iEx1BSNbBUJVNwOfY"><p>4.6/5</p></div></div
+            ><div class="iFEEeRsPS6ExkhA8i" data-fem-type="container"
+              ><p data-fem-dynamic-content-source="PRICE" data-fem-type="text" class="inUkfs9dpFwZXETnO">
+                {%- liquid
+                  assign variant_price = product.selected_or_first_available_variant.price
+
+                  if product.selected_or_first_available_variant.selected_selling_plan_allocation
+                    assign variant_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.price
+                  endif
+                -%}
+                {{- variant_price | money -}}
+              </p>
+
+              {%- liquid
+                assign style = ''
+                assign compare_at_price = product.selected_or_first_available_variant.compare_at_price
+                assign variant_price = product.selected_or_first_available_variant.price
+
+                if product.selected_or_first_available_variant.selected_selling_plan_allocation
+                  assign compare_at_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.compare_at_price
+                  assign variant_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.price
+                endif
+
+                if compare_at_price <= variant_price or compare_at_price == 0 or compare_at_price == null
+                  assign style = 'style="display: none;"'
+                endif
+              -%}
+              <span
+                data-fem-dynamic-content-source="COMPARE_AT"
+                class="ibSu8UdBvU7kkAorv"
+                {{- style -}}
+              >
+                {{- compare_at_price | money -}}
+              </span>
+
+              <!--  -->
+              {%- liquid
+                assign style = ''
+
+                assign is_on_sale = false
+
+                if product.selected_or_first_available_variant.compare_at_price and product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price
+                  assign is_on_sale = true
+                endif
+
+                if is_on_sale != true
+                  assign style = 'style="display: none;"'
+                endif
+              -%}
+              <div class="ihdWOdJcNxzesQbiP" data-fem-type="container" {{- style -}} data-fem-conditional="true"
+                ><div data-fem-type="text" class="fem-view-rich-text iT70fhCEAOgbQtmLH"><p>AHORRA</p></div>
+
+                {%- liquid
+                  assign style = ''
+
+                  assign compare_at_price = product.selected_or_first_available_variant.compare_at_price
+                  assign variant_price = product.selected_or_first_available_variant.price
+
+                  if product.selected_or_first_available_variant.selected_selling_plan_allocation
+                    assign compare_at_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.compare_at_price
+                    assign variant_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.price
+                  endif
+
+                  assign saved_amount = compare_at_price | minus: variant_price | times: 100 | divided_by: compare_at_price
+
+                  if compare_at_price <= variant_price or saved_amount <= 0 or compare_at_price == null
+                    assign style = 'style="display: none;"'
+                  endif
+                -%}
+                <span
+                  data-fem-dynamic-content-source="SAVED_PERCENTAGE"
+                  class="iVb0idyYzNXArX3Gk"
+                  {{- style -}}
+                >
+                  {{- saved_amount -}}
+                  %
+                </span>
+              </div></div
+            ><div data-fem-type="text" class="fem-view-rich-text ieE518qbVOtTQ8m0I"><h3>Cuidado íntimo #1 en Colombia</h3></div
+            ><div class="iczp0RkpOn8hxM1GS" data-fem-type="container"
+              ><div class="iDmrqMrxvVjYISTQq" data-fem-type="container"
+                ><div data-fem-type="icon" class="iqkSxZCxjNXEyuN4a">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+                  </svg></div
+                ><div data-fem-type="text" class="fem-view-rich-text inehhFt3ER61nYqZG"><p>Ayudan a controlar malos olores íntimos</p></div></div
+              ><div class="il2A5ZlJJNuCqnGma" data-fem-type="container"
+                ><div data-fem-type="icon" class="iAv15dJr4KEe6hKjO">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+                  </svg></div
+                ><div data-fem-type="text" class="fem-view-rich-text iTlHOxKKmIjV72KqB"><p>Apoyan el equilibrio del pH íntimo</p></div></div
+              ><div class="iVAOEVPrnHM1RkE3W" data-fem-type="container"
+                ><div data-fem-type="icon" class="ivSO52OoXrfYVvcK8">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+                  </svg></div
+                ><div data-fem-type="text" class="fem-view-rich-text iqGQx5eciNaIya5tY"><p>Complemento ideal en casos de de salud íntima</p></div></div
+              ><div class="iAnI9D3VhyG6XoCNQ" data-fem-type="container"
+                ><div data-fem-type="icon" class="iJyWnNJVkr4BovHYg">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+                  </svg></div
+                ><div data-fem-type="text" class="fem-view-rich-text iP7AmmfUCPqzwI4Gv"><p>Acompaña tu bienestar íntimo</p></div></div
+              ></div
+            ></div
+          ><div class="i81miwvFl1RofDSyM" data-fem-type="container"
+            ><a conditionals="" class="iFa7fSukZe2sKWaZN" data-fem-type="container" href="https://checkoutfem.com/checkout?product=ovulos-vaginales-fem" rel="noopener noreferrer"
+              ><div class="iSTDT4Q6yQ0yItHAR" data-fem-type="container">
+                {%- liquid
+                  assign style = ''
+                  assign quantity_available = product.selected_or_first_available_variant.inventory_quantity
+
+                  if quantity_available >= 1
+                    assign style = 'style="display: none;"'
+                  endif
+                -%}
+                <div data-fem-type="text" class="fem-view-rich-text iGeqg8K8s88Xyh0cc" {{- style -}} data-fem-conditional="true"><p>Agotado</p></div></div
+              >
+              {%- liquid
+                assign style = ''
+                assign quantity_available = product.selected_or_first_available_variant.inventory_quantity
+
+                if quantity_available <= 0
+                  assign style = 'style="display: none;"'
+                endif
+              -%}
+              <!--  -->
+
+              {%- liquid
+                assign style = ''
+                assign compare_at_price = product.selected_or_first_available_variant.compare_at_price
+                assign variant_price = product.selected_or_first_available_variant.price
+
+                if product.selected_or_first_available_variant.selected_selling_plan_allocation
+                  assign compare_at_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.compare_at_price
+                  assign variant_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.price
+                endif
+
+                if compare_at_price <= variant_price or compare_at_price == 0 or compare_at_price == null
+                  assign style = 'style="display: none;"'
+                endif
+              -%}
+              <span
+                data-fem-dynamic-content-source="COMPARE_AT"
+                class="iPZnOKekTOsuPDbnG"
+                {{- style -}}
+              >
+                {{- compare_at_price | money -}}
+              </span>
+
+              <!--  -->
+              {%- liquid
+                assign style = ''
+                assign quantity_available = product.selected_or_first_available_variant.inventory_quantity
+
+                if quantity_available <= 1
+                  assign style = 'style="display: none;"'
+                endif
+              -%}
+              <div class="iypfGhmJTagNDQz6d" data-fem-type="container" {{- style -}} data-fem-conditional="true">
+                {%- liquid
+                  assign style = ''
+                  assign quantity_available = product.selected_or_first_available_variant.inventory_quantity
+
+                  if quantity_available <= 1
+                    assign style = 'style="display: none;"'
+                  endif
+                -%}
+                <p data-fem-dynamic-content-source="PRICE" data-fem-type="text" class="i7TIoKMJvaSMhlLmw" {{- style -}} data-fem-conditional="true">
+                  {%- liquid
+                    assign variant_price = product.selected_or_first_available_variant.price
+
+                    if product.selected_or_first_available_variant.selected_selling_plan_allocation
+                      assign variant_price = product.selected_or_first_available_variant.selected_selling_plan_allocation.price
+                    endif
+                  -%}
+                  {{- variant_price | money -}}
+                </p></div
+              >
+              {%- liquid
+                assign style = ''
+                assign quantity_available = product.selected_or_first_available_variant.inventory_quantity
+
+                if quantity_available <= 1
+                  assign style = 'style="display: none;"'
+                endif
+              -%}
+              <div data-fem-type="icon" class="isbMHXVQR50DHmeMe" {{- style -}} data-fem-conditional="true">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>shopping-cart</title><path d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16h18L59.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,152,204a28,28,0,1,0,28-28H83.17a8,8,0,0,1-7.87-6.57L72.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,222.14,58.87ZM180,192a12,12,0,1,1-12,12A12,12,0,0,1,180,192Zm-96,0a12,12,0,1,1-12,12A12,12,0,0,1,84,192Z"></path>
+                </svg></div></a></div
+          ><div class="iOPFimTnRVA5RIrTa" data-fem-type="accordion-container" data-is-first-open="true" data-is-multi-open-enabled="false"
+            ><div data-state="open" class="iBaiFgAEA5sIXaTod" data-fem-type="accordion-item"
+              ><button class="iBGgigRgLlmFUjA7r" data-fem-type="accordion-header" type="button"
+                ><div data-fem-type="text" class="fem-view-rich-text iqrVDxhtxTWquPd5R"><h3>Detalles del producto</h3></div
+                ><div data-fem-type="icon" class="iKSC7q31CZlZ0m3vJ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>plus</title><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                  </svg></div></button
+              ><div class="iHjGdnQfrvc0RmuLu" data-fem-type="accordion-content" style="--fem-accordion-content-height:auto;--fem-accordion-content-width:auto"
+                ><div data-fem-type="text" class="fem-view-rich-text iaHV8F3NwQrzUzBWu"><h3>Los Óvulos Vaginales FEM están diseñados para actuar directamente en la zona íntima, ayudando a restablecer el equilibrio íntimo de la mujer cuando hay desequilibrios o molestias recurrentes.</h3><h3>Son ideales como apoyo local o como complemento de los probióticos.</h3></div></div
+              ></div
+            ><div data-state="closed" class="ipkEJYlVJRzZppkyQ" data-fem-type="accordion-item"
+              ><button class="i6CNU2WsGG19wB3YK" data-fem-type="accordion-header" type="button"
+                ><div data-fem-type="text" class="fem-view-rich-text imu6BgVC1NwajO0xG"><h3>Beneficios</h3></div
+                ><div data-fem-type="icon" class="idiomNGaE7XoSCrF7">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>plus</title><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                  </svg></div></button
+              ><div class="irhNGeqKIL3L9M4lh" data-fem-type="accordion-content" style="--fem-accordion-content-height:auto;--fem-accordion-content-width:auto"
+                ><div data-fem-type="text" class="fem-view-rich-text iILTKflClajhgeQzW"
+                  ><ul
+                    ><li><h3>Ayudan a regular el pH vaginal</h3></li></ul
+                  ><ul
+                    ><li><h3>Apoyan el bienestar íntimo de la mujer</h3><h3></h3></li
+                    ><li><h3>Contribuyen a reducir molestias en tu zona íntima</h3><h3></h3></li
+                    ><li><h3>Apoyan la recuperación de la flora vaginal</h3></li></ul
+                  ></div
+                ></div
+              ></div
+            ><div data-state="closed" class="i1W63VfTtg2IAySRc" data-fem-type="accordion-item"
+              ><button class="iNP82BouwwQUIifJQ" data-fem-type="accordion-header" type="button"
+                ><div data-fem-type="text" class="fem-view-rich-text iL2QXCvpDA4W9KLXC"><h3>Modo de consumo</h3></div
+                ><div data-fem-type="icon" class="i97pPZxDTLUMLqbqZ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>plus</title><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                  </svg></div></button
+              ><div class="ioQOoJRlkqzCpCjRo" data-fem-type="accordion-content" style="--fem-accordion-content-height:auto;--fem-accordion-content-width:auto"
+                ><div data-fem-type="text" class="fem-view-rich-text iQhVVQ4Aa3ZavF8Dd"><h3>Aplicar 1 óvulo vaginal en la noche, antes de dormir, durante 7 a 10 días o según recomendación.</h3><h3></h3><h3>✨ Uso vaginal. Preferiblemente acostada.</h3></div></div
+              ></div
+            ><div data-state="closed" class="imgQ5jtJCnwR1Qz7z" data-fem-type="accordion-item"
+              ><button class="iWpH4L0x0bjPsnmQQ" data-fem-type="accordion-header" type="button"
+                ><div data-fem-type="text" class="fem-view-rich-text i1zyJB827ubSWwdlE"><h3>Presentación</h3></div
+                ><div data-fem-type="icon" class="iDi1ThHuryz6mZMlG">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>plus</title><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                  </svg></div></button
+              ><div class="i4mPu6mAWvdOPQa3O" data-fem-type="accordion-content" style="--fem-accordion-content-height:auto;--fem-accordion-content-width:auto"
+                ><div data-fem-type="text" class="fem-view-rich-text i2lC92hZz4hhCiESd"><h3>Caja con óvulos vaginales listos para uso local.</h3></div></div
+              ></div
+            ><div data-state="closed" class="i3TQ694NEhMRJebTK" data-fem-type="accordion-item"
+              ><button class="iCTN2cKy14obbYnS4" data-fem-type="accordion-header" type="button"
+                ><div data-fem-type="text" class="fem-view-rich-text iZqnTvw7dtFiww78d"><h3>Cuidado del producto</h3></div
+                ><div data-fem-type="icon" class="inNEj3GHLRHrVBiR1">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                    <title>plus</title><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                  </svg></div></button
+              ><div class="iqpCwqzYVIm8gDDrI" data-fem-type="accordion-content" style="--fem-accordion-content-height:auto;--fem-accordion-content-width:auto"
+                ><div data-fem-type="text" class="fem-view-rich-text iyVmBomTSERVXOOV4"
+                  ><ul
+                    ><li><h3>Conservar en un lugar fresco y seco</h3></li
+                    ><li><h3>Evitar el calor excesivo</h3></li
+                    ><li><h3>Mantener fuera del alcance de los niños</h3></li></ul
+                  ></div
+                ></div
+              ></div
+            ></div
+          ></div
+        ></div
+      ></div
+    ><div class="iJjv0gP3nUvg63rer" data-fem-type="container" id="iJjv0gP3nUvg63rer"
+      ><div class="iOb5l2FX0NsmDUKcH" data-fem-type="container"
+        ><div data-fem-type="text" class="fem-view-rich-text i5zFuGJShOtjC7Wwb"
+          ><h3><strong>¿Qué puedes esperar de los</strong></h3
+          ><h3><strong>óvulos homeopáticos?</strong></h3></div
+        ><div class="itEomVFfHFho46pLE" data-fem-type="container"
+          ><div class="iGU67KMZkA7yNHFQA" data-fem-type="container"
+            ><div data-fem-type="icon" class="iv3Jbx62WZgzLKkUg">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>calendar-check</title><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text iIAzcJhAp4shEshIM"><h3>1 semana</h3></div
+            ><div data-fem-type="text" class="fem-view-rich-text i3eRJaXfWsphgvGTu"><p>Disminución de molestias, sensación de alivio y mayor confort íntimo.</p></div></div
+          ><div class="icssJZ61JPWLiF5HA" data-fem-type="container"
+            ><div data-fem-type="icon" class="iJ1PzNWJDZMHxrw6X">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>calendar-check</title><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text ilEuWpO7p89X0yrig"><h3>1 mes</h3></div
+            ><div data-fem-type="text" class="fem-view-rich-text iDSYQdHeNjIolw7MK"><p>pH más equilibrado, flora vaginal más estable y menos molestias recurrentes.</p></div></div
+          ><div class="iDbo5rHjK6m1HFwxg" data-fem-type="container"
+            ><div data-fem-type="icon" class="i6gY0c8FpCryoxlVK">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>calendar-check</title><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text iwvWbmgSJRO1agOC3"><h3>2 meses</h3></div
+            ><div data-fem-type="text" class="fem-view-rich-text iboim3QmHXfIDo2IG"><p>Zona íntima más protegida, menor recurrencia de desequilibrios y mayor bienestar diario.</p></div></div
+          ></div
+        ></div
+      ></div
+    ><div class="iPiz0BOquBkOS4WBu" data-fem-type="container" id="iPiz0BOquBkOS4WBu"
+      ><div class="iiwRhM8gLd6ox7rnI" data-fem-type="container"
+        ><div data-fem-type="text" class="fem-view-rich-text iMf3Bu56Z5XAeiAOP"
+          ><h3><strong>Una rutina que cuida de ti, todos los días</strong></h3></div
+        ><div data-fem-type="text" class="fem-view-rich-text iw3ROxYMjHCa9JmJX"><p>Tratamiento local que actúa directamente donde tu cuerpo lo necesita.</p><p>Tu bienestar íntimo comienza desde el primer uso</p></div
+        ><div class="iqIltRgpyUdthlOx9" data-fem-type="container"
+          ><div class="iRlSrYSxtprdCiHPQ" data-fem-type="container"
+            ><div class="ijmCvM6oESKq0MhsU" data-fem-type="container"
+              ><div data-fem-type="icon" class="ivqEoEqFRS9Q5Djug">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>check-fat</title><path d="M246.15,65.46l-.07-.07L222.15,41.85a20,20,0,0,0-28.22-.06l-90,88.62L70,97.76a20,20,0,0,0-28.19.1l-24,24a20,20,0,0,0,0,28.26l71.62,72a20,20,0,0,0,28.29,0L246.15,93.74A20,20,0,0,0,246.15,65.46ZM103.61,202.33,37.64,136,56.05,117.6,90,150.24a20,20,0,0,0,28.12,0L208,61.61l18.32,18Z"></path>
+                </svg></div></div
+            ><div data-fem-type="text" class="fem-view-rich-text iQ87h5FDBtUQ80AJ1"><p>Actua directamente</p></div></div
+          ><div class="iRqwlTYhExkeTgpd0" data-fem-type="container"></div
+          ><div class="iEFfVJXuZXOVwFMH9" data-fem-type="container"
+            ><div class="isMkPfEzq7xNMrhxm" data-fem-type="container"
+              ><div data-fem-type="icon" class="ikJmFZ6R65nwI54CH">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>star</title><path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Zm-15.22,5-45.1,39.36a16,16,0,0,0-5.08,15.71L187.35,216v0l-51.07-31a15.9,15.9,0,0,0-16.54,0l-51,31h0L82.2,157.4a16,16,0,0,0-5.08-15.71L32,102.35a.37.37,0,0,1,0-.09l59.44-5.14a16,16,0,0,0,13.35-9.75L128,32.08l23.2,55.29a16,16,0,0,0,13.35,9.75L224,102.26S224,102.32,224,102.33Z"></path>
+                </svg></div></div
+            ><div data-fem-type="text" class="fem-view-rich-text igirH1mOgpbz8MTEZ"><p>SIN CONTRAINDICACIONES</p></div></div
+          ><div class="iQUtFujgkBSpz1BAZ" data-fem-type="container"></div
+          ><div class="iD9tyAmViQDBKxl2o" data-fem-type="container"
+            ><div class="iGTHZbjD9gsittEhj" data-fem-type="container"
+              ><div data-fem-type="icon" class="i0WO1tRsTLfes9a1c">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>gender-female</title><path d="M208,96a80,80,0,1,0-88,79.6V200H88a8,8,0,0,0,0,16h32v24a8,8,0,0,0,16,0V216h32a8,8,0,0,0,0-16H136V175.6A80.11,80.11,0,0,0,208,96ZM64,96a64,64,0,1,1,64,64A64.07,64.07,0,0,1,64,96Z"></path>
+                </svg></div></div
+            ><div data-fem-type="text" class="fem-view-rich-text iaIIkNsPxwK0TEzjl"><p>UNA GRAN COMUNIDAD DE MUJERES</p></div></div
+          ><div class="iFJp9qPlTkJx35Ybe" data-fem-type="container"></div
+          ><div class="i0MMiNJSgZLCytUFI" data-fem-type="container"
+            ><div class="i3nV7pJcCxuENNnOO" data-fem-type="container"
+              ><div data-fem-type="icon" class="i1nliAHNfQl9yyMIN">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>heart</title><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"></path>
+                </svg></div></div
+            ><div data-fem-type="text" class="fem-view-rich-text i4VIbYMaYGUxryt7X"><p>HECHO EN COLOMBIA</p></div></div
+          ><div class="iBPGSrRrGUjVky1Zg" data-fem-type="container"></div
+          ><div class="iXckvmrG9WLiJEA3Z" data-fem-type="container"
+            ><div class="ilhB5dblhiFtCs6cl" data-fem-type="container"
+              ><div data-fem-type="icon" class="i9QAxkuzRZ3bQleqQ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>medal</title><path d="M216,96A88,88,0,1,0,72,163.83V240a8,8,0,0,0,11.58,7.16L128,225l44.43,22.21A8.07,8.07,0,0,0,176,248a8,8,0,0,0,8-8V163.83A87.85,87.85,0,0,0,216,96ZM56,96a72,72,0,1,1,72,72A72.08,72.08,0,0,1,56,96ZM168,227.06l-36.43-18.21a8,8,0,0,0-7.16,0L88,227.06V174.37a87.89,87.89,0,0,0,80,0ZM128,152A56,56,0,1,0,72,96,56.06,56.06,0,0,0,128,152Zm0-96A40,40,0,1,1,88,96,40,40,0,0,1,128,56Z"></path>
+                </svg></div></div
+            ><div data-fem-type="text" class="fem-view-rich-text iqOKrbQlWRbMBsBoS"><p>MÁS DE 1.000 MUJERES LO HAN COMPRADO</p></div></div
+          ></div
+        ></div
+      ></div
+    ><div class="i4fSHJ7yW8IN9fuGF" data-fem-type="container" id="i4fSHJ7yW8IN9fuGF">
+      {%- liquid
+        assign product_Nxg4fmCtl92dvrxu_handle = 'ovulos-vaginales-fem'
+        assign product_Nxg4fmCtl92dvrxu = section.settings.product_Nxg4fmCtl92dvrxu | default: all_products[product_Nxg4fmCtl92dvrxu_handle]
+        assign product_Nxg4fmCtl92dvrxu_variant = product_Nxg4fmCtl92dvrxu.selected_or_first_available_variant
+
+        if product_Nxg4fmCtl92dvrxu.selected_variant
+          assign product_Nxg4fmCtl92dvrxu_variant = product_Nxg4fmCtl92dvrxu.selected_variant
+        endif
+
+        assign product_Nxg4fmCtl92dvrxu_image = product_Nxg4fmCtl92dvrxu_variant.featured_image | default: product_Nxg4fmCtl92dvrxu.featured_image
+      -%}
+      <div class="iNxg4fmCtl92dvrxu" data-fem-type="container" data-fem-form-product-url="{{ product_Nxg4fmCtl92dvrxu.url }}" data-fem-form-variant-id="{{ product_Nxg4fmCtl92dvrxu_variant.id }}" data-fem-form-product-id="{{ product_Nxg4fmCtl92dvrxu.id }}"
+        ><div class="izgVChywOiRjlbY5a" data-fem-type="container"
+          ><div data-fem-type="media" class="iktleQE0ScKvZH7RK"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1080w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 828w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 750w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 640w, {{ 'fem-media-6719fa56012619c8.webp' | asset_url }} 360w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1280w" src="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }}" width="460" height="246" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main fem-view-responsive fem-view-responsive--desktop fem-view-responsive--laptop fem-view-responsive--tablet"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1080w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 828w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 750w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 640w, {{ 'fem-media-6719fa56012619c8.webp' | asset_url }} 360w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1280w" src="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }}" width="460" height="246" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main fem-view-responsive fem-view-responsive--mobile"></div></div
+        ><div class="iez2EN0XK8WsEk0D5" data-fem-type="container"
+          ><div data-fem-type="text" class="fem-view-rich-text ipA5kvc0hcqIazSy6"><h3>¿Por qué los Óvulos FEM?</h3></div
+          ><div data-fem-type="text" class="fem-view-rich-text ik4rZwPmzCOZRSOju"><p>Cuidado íntimo local, consciente y efectivo.</p><p>Los Óvulos FEM actúan directamente en la vagina, ayudando a mejorar el pH y la flora vaginal.</p></div
+          ><div class="inaHXCgO2rhI9k5iY" data-fem-type="container"
+            ><div data-fem-type="icon" class="ihSpwIlBXKvHqqHeQ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>heart</title><path d="M240,94c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,220.66,16,164,16,94A62.07,62.07,0,0,1,78,32c20.65,0,38.73,8.88,50,23.89C139.27,40.88,157.35,32,178,32A62.07,62.07,0,0,1,240,94Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text i5IBRMuMKDoxiwFAZ"><p>Regulan el pH vaginal</p></div></div
+          ><div class="iBxMm2HUt36RVNGHG" data-fem-type="container"
+            ><div data-fem-type="icon" class="ieGw1ACvnQZxbZVr8">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>heart</title><path d="M240,94c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,220.66,16,164,16,94A62.07,62.07,0,0,1,78,32c20.65,0,38.73,8.88,50,23.89C139.27,40.88,157.35,32,178,32A62.07,62.07,0,0,1,240,94Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text idNPAK1zip8aQFcck"><p>Complementa tu microbiota natural</p></div></div
+          ><div class="i4FYTz1K79MqBGpOM" data-fem-type="container"
+            ><div data-fem-type="icon" class="idOVLmXZuoqzo2Uqu">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>heart</title><path d="M240,94c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,220.66,16,164,16,94A62.07,62.07,0,0,1,78,32c20.65,0,38.73,8.88,50,23.89C139.27,40.88,157.35,32,178,32A62.07,62.07,0,0,1,240,94Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text i2xLkzHCHIDnOfO8O"><p>Acción local y directa</p></div></div
+          ><div class="i2iHqPL9oWfkR958I" data-fem-type="container"
+            ><div data-fem-type="icon" class="iz9dCUosFJ9oCXn0i">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>heart</title><path d="M240,94c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,220.66,16,164,16,94A62.07,62.07,0,0,1,78,32c20.65,0,38.73,8.88,50,23.89C139.27,40.88,157.35,32,178,32A62.07,62.07,0,0,1,240,94Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text i1gWdzf0IO7vW7bfP"><p>Libres de químicos agresivos y hormonas</p></div></div
+          ><div class="i8iVdXqVfD2SXziOE" data-fem-type="container"
+            ><div data-fem-type="icon" class="isODDBoZt7nvgp5ga">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>heart</title><path d="M240,94c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,220.66,16,164,16,94A62.07,62.07,0,0,1,78,32c20.65,0,38.73,8.88,50,23.89C139.27,40.88,157.35,32,178,32A62.07,62.07,0,0,1,240,94Z"></path>
+              </svg></div
+            ><div data-fem-type="text" class="fem-view-rich-text iv5YnFqEEjRCFKDA3"><p>Bienestar íntimo desde adentro y por fuera</p></div></div
+          ><a class="iZ6FFpfl0CirVrO4f" data-fem-type="container" href="https://checkoutfem.com/checkout?product=ovulos-vaginales-fem" rel="noopener noreferrer"
+            ><div data-fem-type="text" class="fem-view-rich-text iWW43xjrKaJWRR3SR"><p>Quiero mis óvulos Fem</p></div
+            ><div data-fem-type="icon" class="iGUJ8P40jLhQph8Q7">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>shopping-cart</title><path d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16h18L59.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,152,204a28,28,0,1,0,28-28H83.17a8,8,0,0,1-7.87-6.57L72.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,222.14,58.87ZM180,192a12,12,0,1,1-12,12A12,12,0,0,1,180,192Zm-96,0a12,12,0,1,1-12,12A12,12,0,0,1,84,192Z"></path>
+              </svg></div></a></div></div></div
+    ><div class="iCLY1CpRItyKyvopW" data-fem-type="container" id="iCLY1CpRItyKyvopW"
+      ><div class="i9ntnvGhaYyNEQZN7" data-fem-type="container"
+        ><div data-fem-type="text" class="fem-view-rich-text iWXcsTojELKrVRgQN"><h2>Reseñas de nuestras clientas</h2></div
+        ><div class="ibFT5KzKztZez9etU" data-fem-type="container"
+          ><div class="i6FIV6jcI23ozox8k" data-fem-type="container"
+            ><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-c90eb62da4e151c9.webp' | asset_url }} 1080w, {{ 'fem-media-c90eb62da4e151c9.webp' | asset_url }} 828w, {{ 'fem-media-c90eb62da4e151c9.webp' | asset_url }} 750w, {{ 'fem-media-c90eb62da4e151c9.webp' | asset_url }} 640w, {{ 'fem-media-6dab075fa797d091.webp' | asset_url }} 360w, {{ 'fem-media-c90eb62da4e151c9.webp' | asset_url }} 1280w" src="{{ 'fem-media-c90eb62da4e151c9.webp' | asset_url }}" width="460" height="460" class="fem-view-fill fem-view-image__fill" decoding="async" loading="lazy" fetchpriority="auto" style="object-fit:cover"
+            ><div class="itorcSwyU1Seq1om3" data-fem-type="container"
+              ><div data-fem-type="icon" class="iK0e6vYVwggPlooJv">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>instagram-logo</title><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM176,20H80A60.07,60.07,0,0,0,20,80v96a60.07,60.07,0,0,0,60,60h96a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,176,20Zm36,156a36,36,0,0,1-36,36H80a36,36,0,0,1-36-36V80A36,36,0,0,1,80,44h96a36,36,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Z"></path>
+                </svg></div
+              ><div data-fem-type="text" class="fem-view-rich-text i8XLg74NJzndpkAH2"><p>carolinarestrepoo_</p></div></div
+            ></div
+          ><div class="i36PHeMYA3GIrih4d" data-fem-type="container"
+            ><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-c372e223198eabc8.webp' | asset_url }} 1080w, {{ 'fem-media-c372e223198eabc8.webp' | asset_url }} 828w, {{ 'fem-media-c372e223198eabc8.webp' | asset_url }} 750w, {{ 'fem-media-c372e223198eabc8.webp' | asset_url }} 640w, {{ 'fem-media-7c91be146c13d303.webp' | asset_url }} 360w, {{ 'fem-media-c372e223198eabc8.webp' | asset_url }} 1280w" src="{{ 'fem-media-c372e223198eabc8.webp' | asset_url }}" width="460" height="591" class="fem-view-fill fem-view-image__fill" decoding="async" loading="lazy" fetchpriority="auto" style="object-fit:cover"
+            ><div class="i4alZAZjs4aXgq5g1" data-fem-type="container"
+              ><div data-fem-type="icon" class="iAaQJS8VcSQry1GSf">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>instagram-logo</title><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM176,20H80A60.07,60.07,0,0,0,20,80v96a60.07,60.07,0,0,0,60,60h96a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,176,20Zm36,156a36,36,0,0,1-36,36H80a36,36,0,0,1-36-36V80A36,36,0,0,1,80,44h96a36,36,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Z"></path>
+                </svg></div
+              ><div data-fem-type="text" class="fem-view-rich-text idnlfWmDP7w75W1Qu"><p>mar_vanegasg</p></div></div
+            ></div
+          ><div class="iAG6Nz3QIBQGkFcFC" data-fem-type="container"
+            ><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-4d5b7ada01cf1992.webp' | asset_url }} 1080w, {{ 'fem-media-4d5b7ada01cf1992.webp' | asset_url }} 828w, {{ 'fem-media-4d5b7ada01cf1992.webp' | asset_url }} 750w, {{ 'fem-media-4d5b7ada01cf1992.webp' | asset_url }} 640w, {{ 'fem-media-c8725575e3f561b3.webp' | asset_url }} 360w, {{ 'fem-media-4d5b7ada01cf1992.webp' | asset_url }} 1280w" src="{{ 'fem-media-4d5b7ada01cf1992.webp' | asset_url }}" width="460" height="460" class="fem-view-fill fem-view-image__fill" decoding="async" loading="lazy" fetchpriority="auto" style="object-fit:cover"
+            ><div class="iFpoLrpLcyCvGZ4oj" data-fem-type="container"
+              ><div data-fem-type="icon" class="iROYJ2F6nDZcU4wO6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>instagram-logo</title><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM176,20H80A60.07,60.07,0,0,0,20,80v96a60.07,60.07,0,0,0,60,60h96a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,176,20Zm36,156a36,36,0,0,1-36,36H80a36,36,0,0,1-36-36V80A36,36,0,0,1,80,44h96a36,36,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Z"></path>
+                </svg></div
+              ><div data-fem-type="text" class="fem-view-rich-text iuHYMvzK26tPI8oz7"><p>dahianav_015</p></div></div
+            ></div
+          ><div class="iFRTnhzcLrjCQLjXW" data-fem-type="container"
+            ><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-b397dbf106cd37bd.webp' | asset_url }} 1080w, {{ 'fem-media-b397dbf106cd37bd.webp' | asset_url }} 828w, {{ 'fem-media-b397dbf106cd37bd.webp' | asset_url }} 750w, {{ 'fem-media-b397dbf106cd37bd.webp' | asset_url }} 640w, {{ 'fem-media-162ccaf04bf5d0f8.webp' | asset_url }} 360w, {{ 'fem-media-b397dbf106cd37bd.webp' | asset_url }} 1280w" src="{{ 'fem-media-b397dbf106cd37bd.webp' | asset_url }}" width="460" height="818" class="fem-view-fill fem-view-image__fill" decoding="async" loading="lazy" fetchpriority="auto" style="object-fit:cover"
+            ><div class="ikTpiwrlFaVOxt9ld" data-fem-type="container"
+              ><div data-fem-type="icon" class="ikb7wfmLqJMd1wDSQ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                  <title>instagram-logo</title><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM176,20H80A60.07,60.07,0,0,0,20,80v96a60.07,60.07,0,0,0,60,60h96a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,176,20Zm36,156a36,36,0,0,1-36,36H80a36,36,0,0,1-36-36V80A36,36,0,0,1,80,44h96a36,36,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Z"></path>
+                </svg></div
+              ><div data-fem-type="text" class="fem-view-rich-text iVdjZaZKv9DNvT5Xs"><p>aidavictoriam</p></div></div
+            ></div
+          ></div
+        ></div
+      ></div
+    ><div class="iBnD670mz6BqCSbI5" data-fem-type="container" id="iBnD670mz6BqCSbI5"
+      ><div class="i0HAQPbjwZ3vMG5Qb" data-fem-type="container"
+        ><div class="io761Mu9yNYwHwTgh" data-fem-type="container"
+          ><div data-fem-type="text" class="fem-view-rich-text iKCAvqHHQv3ywKPUr"><h2>Haz parte de la familia Fem</h2></div
+          ><div data-fem-type="text" class="fem-view-rich-text inLM2TS4KGqCdoq6X"><p>La constancia marca la diferencia. Nuestro producto es un alimento que se puede consumir todos los días</p></div
+          ><div class="id0rktxWGgfl3bDnH" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text iLs2P0ndkJW1vItMp"
+              ><p><strong>Antes:</strong> flujo irregular y sensación de desequilibrio</p></div
+            ><div class="iLFbfmm9qaOSbCbew" data-fem-type="container"></div
+            ><div data-fem-type="text" class="fem-view-rich-text ivgj5Z8zg1nvK4Zfs"
+              ><p><strong>Después:</strong> mayor equilibrio y bienestar íntimo día a día, según el testimonio de nuestras clientas tras 30 días de consumo constante</p></div
+            ></div
+          ></div
+        ><div data-fem-type="media" class="iYL05z2QLt6yqDRCn"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-ea84c8fc76745859.webp' | asset_url }} 1080w, {{ 'fem-media-55dbe581e6aaa386.webp' | asset_url }} 828w, {{ 'fem-media-60adf4945a428e0d.webp' | asset_url }} 750w, {{ 'fem-media-21f2a447ed59f45b.webp' | asset_url }} 640w, {{ 'fem-media-c54ca8b79d9f274f.webp' | asset_url }} 360w, {{ 'fem-media-ea84c8fc76745859.webp' | asset_url }} 1280w" src="{{ 'fem-media-ea84c8fc76745859.webp' | asset_url }}" width="1000" height="1250" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main fem-view-responsive fem-view-responsive--desktop fem-view-responsive--laptop fem-view-responsive--tablet"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-6379e64f85df0262.webp' | asset_url }} 1080w, {{ 'fem-media-6379e64f85df0262.webp' | asset_url }} 828w, {{ 'fem-media-6379e64f85df0262.webp' | asset_url }} 750w, {{ 'fem-media-6379e64f85df0262.webp' | asset_url }} 640w, {{ 'fem-media-32c9bad2b2feaa29.webp' | asset_url }} 360w, {{ 'fem-media-6379e64f85df0262.webp' | asset_url }} 1280w" src="{{ 'fem-media-6379e64f85df0262.webp' | asset_url }}" width="500" height="625" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main fem-view-responsive fem-view-responsive--mobile"></div></div></div
+    ><div class="iVCQwc8rnf5CpZXbp" data-fem-type="container" id="iVCQwc8rnf5CpZXbp"
+      ><div class="i4ltATjBLF3mYLrDT" data-fem-type="container"
+        ><div class="iyWltBLoDSwihF4xl" data-fem-type="container"
+          ><div data-fem-type="text" class="fem-view-rich-text ihnGRXlISa6jAvOnd"><h2>Testimonios</h2></div
+          ><div data-fem-type="text" class="fem-view-rich-text iwV5Tj8ICbAzD6xL6"><p>Nuestras clientas están felices por sus cambios</p></div></div
+        ></div
+      ><div class="ierkXfHCPl7BwECLP" data-fem-type="container"
+        ><div class="i8GP92BcRtwFQakyb" data-fem-type="container"
+          ><div class="itxBuMlT1qnnDTj0s" data-fem-type="container"
+            ><div id="jy2Acijt3XBnsrO5" class="fem-view-ticker-container ijy2Acijt3XBnsrO5" data-fem-type="ticker" data-fem-ticker-is-reversed="false" data-fem-ticker-pause="true" data-fem-ticker-speed="64"
+              ><div class="fem-view-ticker"
+                ><div class="fem-view-ticker-initial-child-container"
+                  ><div class="i7xxIPPiYhKJqIzAl" data-fem-type="container"
+                    ><div data-fem-type="media" class="i7IFg8S5dnXx6z2n3"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-ada3980fd589aecc.jpg' | asset_url }} 1080w, {{ 'fem-media-037769764d689906.jpg' | asset_url }} 828w, {{ 'fem-media-037769764d689906.jpg' | asset_url }} 750w, {{ 'fem-media-ada3980fd589aecc.jpg' | asset_url }} 640w, {{ 'fem-media-0c958b2e196088c7.jpg' | asset_url }} 360w, {{ 'fem-media-037769764d689906.jpg' | asset_url }} 1280w" src="{{ 'fem-media-037769764d689906.jpg' | asset_url }}" width="500" height="500" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                    ><div class="itFjFK9zlKwLaZCiJ" data-fem-type="container"
+                      ><div class="icvAaFvWI536nQLyF" data-fem-type="container"
+                        ><div data-fem-type="icon" class="iC1QQJbOnQAb11x4H">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="ij3cmqKZY7jMhc0zU">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iy6t3fqqfhtL5RNlo">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iOxZE1Q9Am1cIEC99">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iKRwO8yTwRsQFalRE">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div></div
+                      ><div data-fem-type="text" class="fem-view-rich-text iPCaxL0cr59pZMhyD"><p>"Mi rutina intima cambió"</p></div
+                      ><div data-fem-type="text" class="fem-view-rich-text iRqI8CsDRGPj7jIt8"><p>Es mejor comprar con ellos</p><p>sabiendo que son Colombianos</p><p>y son más confiables que otros</p></div
+                      ><div class="iY8gIpdAThOlp3VxH" data-fem-type="container"
+                        ><div data-fem-type="media" class="iGXLG1EPMuOJutEQt"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-b8b4e8373e2a771f.jpg' | asset_url }} 1080w, {{ 'fem-media-af61a490bad39a3c.jpg' | asset_url }} 828w, {{ 'fem-media-af61a490bad39a3c.jpg' | asset_url }} 750w, {{ 'fem-media-b8b4e8373e2a771f.jpg' | asset_url }} 640w, {{ 'fem-media-2e030c3c18ddfaf2.jpg' | asset_url }} 360w, {{ 'fem-media-af61a490bad39a3c.jpg' | asset_url }} 1280w" src="{{ 'fem-media-af61a490bad39a3c.jpg' | asset_url }}" width="500" height="888" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                        ><div class="i0FG6TvYjqeZUi25c" data-fem-type="container"
+                          ><div data-fem-type="text" class="fem-view-rich-text ieQyluhPXvQuBFFb0"><p>Alison Martínez V.</p></div
+                          ><div data-fem-type="text" class="fem-view-rich-text iIPEvoRpQOE0t4zTD"><p>@alisonmv_</p></div></div
+                        ></div
+                      ></div
+                    ></div
+                  ><div class="i1Ef7SonxZNXhOMAi" data-fem-type="container"
+                    ><div data-fem-type="media" class="iIajOvTTgGxYL0lik"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-555fe439faaca3d0.jpg' | asset_url }} 1080w, {{ 'fem-media-555fe439faaca3d0.jpg' | asset_url }} 828w, {{ 'fem-media-555fe439faaca3d0.jpg' | asset_url }} 750w, {{ 'fem-media-5a24faa5bca8e922.jpg' | asset_url }} 640w, {{ 'fem-media-555fe439faaca3d0.jpg' | asset_url }} 360w, {{ 'fem-media-555fe439faaca3d0.jpg' | asset_url }} 1280w" src="{{ 'fem-media-555fe439faaca3d0.jpg' | asset_url }}" width="200" height="200" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                    ><div class="iEblkfPUh1qX3pJ0r" data-fem-type="container"
+                      ><div class="inHuo9EevetHvcDfa" data-fem-type="container"
+                        ><div data-fem-type="icon" class="i0KRnfwPxNNOLPcPT">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iEtTTlBOLymiySXHv">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="i9oPygG4UyarzGbKy">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="i1daZxancstpwRsmr">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="ib6EBl5XGcQWPdqHB">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div></div
+                      ><div data-fem-type="text" class="fem-view-rich-text iNb1k1UaMrAFJypXO"><p>"Esto ha sido lo mejor"</p></div
+                      ><div data-fem-type="text" class="fem-view-rich-text iZAAzEldhwbK0Rcnf"><p>Son espectaculares! llevo 2</p><p>semanas usándolos y puedo decir</p><p>que mi PH mejoró demasiado</p></div
+                      ><div class="i13IsFL7j2ETbD2vY" data-fem-type="container"
+                        ><div data-fem-type="media" class="i3orOFb6o6o8ey3Xk"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-9fc2f3a17fec4d5f.png' | asset_url }} 1080w, {{ 'fem-media-11c5bad7b78a6435.webp' | asset_url }} 828w, {{ 'fem-media-11c5bad7b78a6435.webp' | asset_url }} 750w, {{ 'fem-media-9fc2f3a17fec4d5f.png' | asset_url }} 640w, {{ 'fem-media-9fc2f3a17fec4d5f.png' | asset_url }} 360w, {{ 'fem-media-11c5bad7b78a6435.webp' | asset_url }} 1280w" src="{{ 'fem-media-11c5bad7b78a6435.webp' | asset_url }}" width="148" height="192" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                        ><div class="inj0U9EO1aJobtkfh" data-fem-type="container"
+                          ><div data-fem-type="text" class="fem-view-rich-text iXhKROlbrlUgZke4Q"><p>Mary Toro.</p></div
+                          ><div data-fem-type="text" class="fem-view-rich-text imNot8doHhIehKVBb"><p>@Mary00</p></div></div
+                        ></div
+                      ></div
+                    ></div
+                  ><div class="ivDqoyJVajPZ2MAoJ" data-fem-type="container"
+                    ><div data-fem-type="media" class="iAoYZc7Q2ymwlxhbf"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-b51056861b48d058.png' | asset_url }} 1080w, {{ 'fem-media-384b0f5362454ab4.webp' | asset_url }} 828w, {{ 'fem-media-49e7497064bbced0.webp' | asset_url }} 750w, {{ 'fem-media-3fd8b90b69d4c87f.png' | asset_url }} 640w, {{ 'fem-media-8c12095b16ffa84e.webp' | asset_url }} 360w, {{ 'fem-media-e2409cabfe9e9967.webp' | asset_url }} 1280w" src="{{ 'fem-media-e2409cabfe9e9967.webp' | asset_url }}" width="1080" height="1080" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                    ><div class="ihDeY4EG4ZNLgIYuS" data-fem-type="container"
+                      ><div class="iaFWwKzYFwwv042kA" data-fem-type="container"
+                        ><div data-fem-type="icon" class="iHJuKSLKcpGxkPvqU">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iWhwGfEDUH3DI9H8G">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iATZCTmf3pojnupC7">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iozsTUkHVYww7NeLM">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="i0WFCDDgcEHD2my5b">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div></div
+                      ><div data-fem-type="text" class="fem-view-rich-text i2UiGAg4kEagoaoqN"><p>"Me encantó"</p></div
+                      ><div data-fem-type="text" class="fem-view-rich-text ioSzgqFFhAg3uHJoT"><p>Desde el tercer día me acompañó, son muy buenas y eso que soy de PH muy fuerte. No las cambio</p><p>por nada</p></div
+                      ><div class="iTCS1lLyg0NGPxewO" data-fem-type="container"
+                        ><div data-fem-type="media" class="iUyioSdYhX6Wtwsif"><img alt="" src="{{ 'IMG_0879-2-2.webp' | file_url }}" width="4000" height="3200" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                        ><div class="i3R4fJHxsZmkFKwDr" data-fem-type="container"
+                          ><div data-fem-type="text" class="fem-view-rich-text iKNlBBKmu0fuqLZK7"><p>Camila Guingue</p></div
+                          ><div data-fem-type="text" class="fem-view-rich-text ixln7Hcj9nDJhvsPu"><p>@CamilaGG30</p></div></div
+                        ></div
+                      ></div
+                    ></div
+                  ><div class="i5aBM3kEBgYL1Lyyh" data-fem-type="container"
+                    ><div data-fem-type="media" class="iVizw0qRyclzqsvgl"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-d5f3d05de3d78f6c.png' | asset_url }} 1080w, {{ 'fem-media-e8cca7a2f8b5ce2f.webp' | asset_url }} 828w, {{ 'fem-media-25894952002021bb.webp' | asset_url }} 750w, {{ 'fem-media-59c99c3d0f8b16ec.png' | asset_url }} 640w, {{ 'fem-media-436c49e0fcef29bf.png' | asset_url }} 360w, {{ 'fem-media-f58b3d60ee278e23.webp' | asset_url }} 1280w" src="{{ 'fem-media-f58b3d60ee278e23.webp' | asset_url }}" width="1080" height="1080" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                    ><div class="iWEcmQcHQ5IOLYb7R" data-fem-type="container"
+                      ><div class="i2ZJgvydpCb0HGbc6" data-fem-type="container"
+                        ><div data-fem-type="icon" class="iYesNaMmZnQUaKGyq">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iJVtHsYA6vqpkhSUX">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="i9OnCIh0CDbRp6k7o">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="iE5UW0MMhE1mam0T4">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div
+                        ><div data-fem-type="icon" class="isPsZkXpmKhdOgteM">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                            <title>star</title><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                          </svg></div></div
+                      ><div data-fem-type="text" class="fem-view-rich-text ioHZmRN5ki70nt0yA"><p>"Cambió mi vida"</p></div
+                      ><div data-fem-type="text" class="fem-view-rich-text iDHbKyRtz7cK6qRoe"><p>Lo mejor de lo mejor, yo las uso y mi bienestar</p><p>ha mejorado increíblemente</p></div
+                      ><div class="iQZ6tlsrni3M9ao7H" data-fem-type="container"
+                        ><div data-fem-type="media" class="i2XXp19qsO8jLDeRx"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-7420e74985f1c2bd.png' | asset_url }} 1080w, {{ 'fem-media-98c9593a8813cc84.webp' | asset_url }} 828w, {{ 'fem-media-50d16c8c92221c40.webp' | asset_url }} 750w, {{ 'fem-media-85cb85111a468dc9.webp' | asset_url }} 640w, {{ 'fem-media-d90c93ef1671432b.png' | asset_url }} 360w, {{ 'fem-media-98c9593a8813cc84.webp' | asset_url }} 1280w" src="{{ 'fem-media-98c9593a8813cc84.webp' | asset_url }}" width="820" height="820" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div
+                        ><div class="i2a1SfcHbNb9lFTzy" data-fem-type="container"
+                          ><div data-fem-type="text" class="fem-view-rich-text ihpK5n1C7P7pKXP0X"><p>Daniela M.</p></div
+                          ><div data-fem-type="text" class="fem-view-rich-text iXJfh0cQuys4OKmOI"><p>@danim_</p></div></div
+                        ></div
+                      ></div
+                    ></div
+                  ></div
+                ></div
+              ><div class="fem-view-ticker"></div></div></div></div></div></div
+    ><div class="i0dA0T4kgM7sOzhsJ fem-view-scroll-trigger fem-view-scroll-trigger--hidden fem-view-reveal--transform" data-fem-scroll-into-view-replay="true" data-fem-scroll-into-view-offset="600" data-fem-type="container" id="i0dA0T4kgM7sOzhsJ"
+      ><div class="i4mp7uVNngqBvfvsb" data-fem-type="container"
+        ><div class="iVHbEmOwlfJp24XT6" data-fem-type="container"
+          ><div data-fem-type="media" class="ie4upxHtfF4qzc7jV"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1080w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 828w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 750w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 640w, {{ 'fem-media-6719fa56012619c8.webp' | asset_url }} 360w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1280w" src="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }}" width="460" height="246" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main fem-view-responsive fem-view-responsive--desktop fem-view-responsive--laptop fem-view-responsive--tablet"><img alt="" sizes="(max-width: 1280px) 100vw, 1280px" srcSet="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1080w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 828w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 750w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 640w, {{ 'fem-media-6719fa56012619c8.webp' | asset_url }} 360w, {{ 'fem-media-ff23d5008257e868.webp' | asset_url }} 1280w" src="{{ 'fem-media-ff23d5008257e868.webp' | asset_url }}" width="460" height="246" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main fem-view-responsive fem-view-responsive--mobile"></div></div
+        ><div class="iZkxa7KbgekBI5Iv8" data-fem-type="container"
+          ><div class="iIjRAefE8KH86rD88" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text i0nXT2XoBRIBwvOjk"><p>Óvulos vaginales</p></div
+            ><div data-fem-type="text" class="fem-view-rich-text iKMdrOJ547aB1wTKs"><p>Fem x 6 UND</p></div></div
+          ><div class="i8qqw43ebZfG5x14z" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text ivQgVdyENz30LQXXw"><p>$ 84.900</p></div
+            ><div data-fem-type="text" class="fem-view-rich-text ipCq67sst8PO9IuNl"><p>$ 149.900</p></div></div
+          ><div class="ipv5I6wJhrarGmwpd" data-fem-type="container"
+            ><a class="iRlKKH0UK8L6qvJ9m" data-fem-type="container" href="https://checkoutfem.com/checkout?product=ovulos-vaginales-fem" rel="noopener noreferrer"
+              ><div data-fem-type="text" class="fem-view-rich-text ij5oBG5wXgxER1Zot"><p> ENVÍO GRATIS →</p></div></a
+            ><div data-fem-type="text" class="fem-view-rich-text iN5PfmdWViKWyNrkt"><p>Óvulos vaginales Fem x 6 UND</p></div></div
+          ></div
+        ></div
+      ></div
+    ><div class="irJBAr8L7RWUtIx74" data-fem-type="container" id="irJBAr8L7RWUtIx74"
+      ><div class="iQwcN50T7G6aJynn7" data-fem-type="container"
+        ><div data-fem-type="text" class="fem-view-rich-text ih2iCGzJFGkg1ZuAc"><h2>Óvulos homeopáticos vs </h2><h2>otras soluciones</h2></div
+        ><div data-fem-type="text" class="fem-view-rich-text i3edGFglyGj0lxpGT"><p>¿Remedios caseros, tés o fórmulas milagrosas? Mejor no</p></div></div
+      ><div class="iLRhKWYKrwTl8cQZS" data-fem-type="container"
+        ><div class="iag0eUPgLG2lBoayb" data-fem-type="container"
+          ><div class="iLlDr7z4Ta78jOVN8" data-fem-type="container"></div
+          ><div class="iGfaNAVbz9GOHnoWu" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text i3KK2JqexCydLGlGW"><p>Acompaña tu bienestar íntimo</p></div></div
+          ><div class="iit9thQo77pYzbK8I" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text iTF8gFsIEd5VXaR8z"><p>Tenemos registro invima</p></div></div
+          ><div class="iCZya8SsGocVOmuaS" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text ioMh6tNjNWINwI2vV"><p>+1.000 clientas felices</p></div></div
+          ><div class="iR0rpJk0GIuz6gY8B" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text iWUjIN8ZDxlNlIm0D"><p>Sin efectos secundarios</p></div></div
+          ><div class="iHZxuxSgLtqRlHoH2" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text iibAdn6ytAHoTJi46"><p>Atención y acompañamiento constante</p></div></div
+          ></div
+        ><div class="i1hgIahXoACffSXmK" data-fem-type="container"
+          ><div class="i2VcIdHVL9YxbmpBX" data-fem-type="container"
+            ><div data-fem-type="media" class="ie4oeRzqEVQ7mP5IB"><img alt="" src="{{ 'fem-logotype-fem-9782eed1.svg' | asset_url }}" width="1500" height="470" decoding="async" loading="lazy" fetchpriority="auto" class="fem-view-media fem-view-image fem-view-image__main"></div></div
+          ><div class="i67CfONqT5eFmZivu" data-fem-type="container"
+            ><div data-fem-type="icon" class="i9pZ1ieUx152bgdsV">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="i0dK05NAtPV08Ta3x" data-fem-type="container"
+            ><div data-fem-type="icon" class="iXP3eWTVL0gDDIfr9">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="inGIUsh1Y0a7zH5b1" data-fem-type="container"
+            ><div data-fem-type="icon" class="itZc6BWltLjwxsx6z">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="iXd2Xec5419nQpfyU" data-fem-type="container"
+            ><div data-fem-type="icon" class="iWCWMFFOLfyFw0J8o">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="iXjlOSAoBbtscQsLY" data-fem-type="container"
+            ><div data-fem-type="icon" class="iB3WBeMOooNENJcXu">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>check-circle</title><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div></div
+        ><div class="iNwPKC3KB1CC5Qp8N" data-fem-type="container"
+          ><div class="iNSnskUnNec1VpDeF" data-fem-type="container"
+            ><div data-fem-type="text" class="fem-view-rich-text iglVR5H9cyCIHsRVy"><p>Otros</p></div></div
+          ><div class="iWlan46jzZ6tB4q01" data-fem-type="container"
+            ><div data-fem-type="icon" class="iXHLvbIPPCTQQteOk">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>x-circle</title><path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="iyMprIKgv6WNe5Lkz" data-fem-type="container"
+            ><div data-fem-type="icon" class="i4RmaMQ7GHMhwEGAu">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>x-circle</title><path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="irtgw2vTbe1qh6Fpf" data-fem-type="container"
+            ><div data-fem-type="icon" class="iS9iw7XaltsFR6P4m">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>x-circle</title><path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="inj8IL7m9WspeZd3q" data-fem-type="container"
+            ><div data-fem-type="icon" class="iO6pwT4mbmqQiUw6u">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>x-circle</title><path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div
+          ><div class="ifUhEckB120UJDQsb" data-fem-type="container"
+            ><div data-fem-type="icon" class="iY2qRdE2R6oEkvhRT">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-view-icon">
+                <title>x-circle</title><path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+              </svg></div></div></div></div
+    ></div>
+    <!--  -->
+    <script type="application/json" id="variants__XWq4mUQvEoGZTKex--{{ section.id }}">
+      {{ product.variants | json }}
+    </script>
+    <script type="application/json" id="options__XWq4mUQvEoGZTKex--{{ section.id }}">
+      {{ product.options_with_values | json }}
+    </script>
+
+    {%- assign selling_plans_json = '' -%}
+    {%- for variant in product.variants -%}
+      {%- for allocation in variant.selling_plan_allocations -%}
+        {%- capture allocation_json -%}
+								{"variantId":"{{ variant.id }}","sellingPlanId":"{{ allocation.selling_plan.id }}","sellingPlanName":"{{ allocation.selling_plan.name | escape }}","price":"{{ allocation.price | money | escape }}","compareAtPrice":"{{ allocation.compare_at_price | money | escape }}"}
+							{%- endcapture -%}
+        {%- assign selling_plans_json = selling_plans_json | append: allocation_json | append: ',' -%}
+      {%- endfor -%}
+    {%- endfor -%}
+    {%- assign selling_plans_json_array = selling_plans_json | split: ',' -%}
+    {%- if selling_plans_json_array.size > 0 -%}
+      <script type="application/json" id="selling_plans__XWq4mUQvEoGZTKex--{{ section.id }}">
+        [{{ selling_plans_json | remove_last: ',' }}]
+      </script>
+    {%- endif -%}
+    <!--  -->
+  </form>
+  <!-- prettier-ignore -->
+  
+  <script type="application/ld+json">
+    {{ product | structured_data }}
+  </script>
+</div>
+{% schema %}
+{
+  "name": "Óvulos Homeopáticos "
+}
+{% endschema %}
+

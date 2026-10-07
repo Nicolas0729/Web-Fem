@@ -7,7 +7,7 @@ export function improveThemeMarkup(source:string, staticImages:Record<string,{wi
     if(image)dimensions=`width="{{ ${image}.width }}" height="{{ ${image}.height }}"`;
     else if(tag.includes('media.media_type'))dimensions='width="{{ media.preview_image.width }}" height="{{ media.preview_image.height }}"';
     else if(tag.includes('product.selected_or_first_available_variant.featured_image | default: product.featured_image'))dimensions='width="{{ product.selected_or_first_available_variant.featured_image.width | default: product.featured_image.width }}" height="{{ product.selected_or_first_available_variant.featured_image.height | default: product.featured_image.height }}"';
-    else if(tag.includes('instant-video__sizer')){
+    else if(tag.includes('fem-view-video__sizer')){
       const decoded=decodeURIComponent(tag);const width=decoded.match(/width='([\d.]+)'/)?.[1];const height=decoded.match(/height='([\d.]+)'/)?.[1];
       if(width&&height)dimensions=`width="${Math.round(Number(width)*4)}" height="${Math.round(Number(height)*4)}"`;
     }

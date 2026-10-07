@@ -1,22 +1,46 @@
 import {enhanceCommunityVideos} from './community-video.ts';
-import {loadPresentComponents} from './loader.ts';
+import {enhanceAnniversaryVideo} from './anniversary-video.ts';
+import {loadPresentComponents,bindLazySearchShortcut} from './loader.ts';
 import {enhanceAccessibility} from './accessibility.ts';
+import {enhanceNativeInteractions} from './native-interactions.ts';
+import {enhanceCartDrawer} from './cart-drawer.ts';
+import {enhancePurchaseSelection} from './purchase-selection.ts';
+import {enhanceCatalogInteractions} from './catalog-interactions.ts';
+import {enhanceScratchPromotion,initializeScratchPromotion} from './scratch-promotion.ts';
 function boot(): void {
+  enhanceCartDrawer();
+  enhancePurchaseSelection();
   loadPresentComponents();
+  bindLazySearchShortcut();
   enhanceAccessibility();
   enhanceCommunityVideos();
+  enhanceAnniversaryVideo();
+  enhanceNativeInteractions();
+  enhanceCatalogInteractions();
+  initializeScratchPromotion();
   document.documentElement.classList.remove('no-js');
   new MutationObserver(records => {
+    const roots=new Set<Element>();
     for (const record of records) {
       if (record.type === 'attributes' && record.target instanceof HTMLElement) {
-        record.target.setAttribute('aria-expanded', String(record.target.dataset.instantState === 'active'));
+        if(record.target.hasAttribute('open'))roots.add(record.target);
       }
-      for (const added of record.addedNodes) if (added instanceof Element) {
-        loadPresentComponents(added);
-        enhanceAccessibility(added);
-        enhanceCommunityVideos(added);
+      for (const added of record.addedNodes) if (added instanceof Element && added.isConnected)roots.add(added);
+    }
+    for(const root of roots){
+      let parent=root.parentElement,covered=false;
+      while(parent){if(roots.has(parent)){covered=true;break;}parent=parent.parentElement;}
+      if(!covered){
+        loadPresentComponents(root);
+        enhanceAccessibility(root);
+        enhanceCommunityVideos(root);
+        enhanceAnniversaryVideo(root);
+        enhanceNativeInteractions(root);
+        enhancePurchaseSelection(root);
+        enhanceCatalogInteractions(root);
+        enhanceScratchPromotion(root);
       }
     }
-  }).observe(document.body, {childList:true,subtree:true,attributes:true,attributeFilter:['data-instant-state']});
+  }).observe(document.body, {childList:true,subtree:true,attributes:true,attributeFilter:['open']});
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();

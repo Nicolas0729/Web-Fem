@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-Au60canUCGIMViZY": {
-      "type": "instant-Au60canUCGIMViZY",
+    "fem-product-ovulos": {
+      "type": "fem-product-ovulos",
       "settings": {}
     }
   },
   "order": [
-    "instant-Au60canUCGIMViZY"
+    "fem-product-ovulos"
   ]
 }
 

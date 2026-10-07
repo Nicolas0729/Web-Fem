@@ -1,0 +1,96 @@
+{
+  "options": [
+    {
+      "name": "Tipo de compra",
+      "position": 1,
+      "values": [
+        "Compra Única 1",
+        "Compra Única 2",
+        "Suscripción 1",
+        "Suscripción 2"
+      ]
+    },
+    {
+      "name": "Cantidad",
+      "position": 2,
+      "values": [
+        "1 unidad",
+        "2 unidades"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": 43659069325400,
+      "options": [
+        "Compra Única 1",
+        "1 unidad"
+      ],
+      "price": 9350000,
+      "available": true
+    },
+    {
+      "id": 43659069358168,
+      "options": [
+        "Compra Única 1",
+        "2 unidades"
+      ],
+      "price": 16990000,
+      "available": true
+    },
+    {
+      "id": 44093805658200,
+      "options": [
+        "Compra Única 2",
+        "1 unidad"
+      ],
+      "price": 9350000,
+      "available": true
+    },
+    {
+      "id": 44093805690968,
+      "options": [
+        "Compra Única 2",
+        "2 unidades"
+      ],
+      "price": 16990000,
+      "available": true
+    },
+    {
+      "id": 43659069390936,
+      "options": [
+        "Suscripción 1",
+        "1 unidad"
+      ],
+      "price": 8990000,
+      "available": true
+    },
+    {
+      "id": 43659069423704,
+      "options": [
+        "Suscripción 1",
+        "2 unidades"
+      ],
+      "price": 14990000,
+      "available": true
+    },
+    {
+      "id": 43659069456472,
+      "options": [
+        "Suscripción 2",
+        "1 unidad"
+      ],
+      "price": 8990000,
+      "available": true
+    },
+    {
+      "id": 43659069489240,
+      "options": [
+        "Suscripción 2",
+        "2 unidades"
+      ],
+      "price": 14990000,
+      "available": true
+    }
+  ]
+}

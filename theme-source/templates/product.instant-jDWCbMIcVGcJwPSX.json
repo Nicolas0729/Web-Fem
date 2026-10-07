@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-jDWCbMIcVGcJwPSX": {
-      "type": "instant-jDWCbMIcVGcJwPSX",
+    "fem-product-probiotico-ovulos": {
+      "type": "fem-product-probiotico-ovulos",
       "settings": {}
     }
   },
   "order": [
-    "instant-jDWCbMIcVGcJwPSX"
+    "fem-product-probiotico-ovulos"
   ]
 }
 

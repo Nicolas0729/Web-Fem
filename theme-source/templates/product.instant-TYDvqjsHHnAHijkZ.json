@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-TYDvqjsHHnAHijkZ": {
-      "type": "instant-TYDvqjsHHnAHijkZ",
+    "fem-product-mom-doble": {
+      "type": "fem-product-mom-doble",
       "settings": {}
     }
   },
   "order": [
-    "instant-TYDvqjsHHnAHijkZ"
+    "fem-product-mom-doble"
   ]
 }
 

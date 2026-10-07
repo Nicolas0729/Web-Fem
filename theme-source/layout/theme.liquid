@@ -95,7 +95,11 @@
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
-      {% sections 'header-group' %}
+      {% if template.name == 'index' %}
+        {% section 'fem-header' %}
+      {% else %}
+        {% sections 'header-group' %}
+      {% endif %}
     </div>
 
     <main
@@ -109,7 +113,14 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {% if template.name == 'index' %}
+      {% section 'fem-footer' %}
+    {% else %}
+      {% sections 'footer-group' %}
+    {% endif %}
+
+    {% section 'fem-cart-drawer' %}
+    {% render 'fem-scratch-card' %}
 
     {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'critical.js' | asset_url }}"></script>

@@ -36,10 +36,11 @@ export function repairNavigation(source: string, liquid = false): string {
     if (className === 'ipWMBvNfOCI940U8M') {
       const start = result.search(new RegExp(`<a\\b(?=[^>]*class="[^"]*${className})`));
       if (start >= 0) {
-        const end = result.indexOf('</div\n          ></a', start);
-        if (end >= 0) {
-          const part = result.slice(start, end).replace(/^<a\b/, '<div').replace(/\s(?:href|rel|as)="[^"]*"/g, (a, offset: number) => offset < result.slice(start).indexOf('>') ? '' : a);
-          result = result.slice(0,start) + part + result.slice(end).replace('</div\n          ></a', '</div\n          ></div');
+        const closing = /<\/div\s*><\/a\b/.exec(result.slice(start));
+        if (closing) {
+          const end=start+closing.index;
+          const part=result.slice(start,end).replace(/^<a\b[^>]*>/,tag=>tag.replace(/^<a\b/,'<div').replace(/\s(?:href|rel|as)="[^"]*"/g,''));
+          result=result.slice(0,start)+part+result.slice(end).replace(/^(<\/div\s*>)<\/a\b/,'$1</div');
         }
       }
     } else {

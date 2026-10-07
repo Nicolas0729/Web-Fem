@@ -1,0 +1,39 @@
+{% doc %}
+Product search card matching the Todos los productos collection.
+@param {product} card_product - Product returned by Shopify search.
+{% enddoc %}
+{%- liquid
+  assign card_variant = card_product.selected_or_first_available_variant
+  assign card_image = card_variant.featured_image | default: card_product.featured_image
+  assign hover_image = card_product.images[1]
+-%}
+<a class="fem-search-card{% if hover_image != blank %} fem-search-card--two-images{% endif %}" href="{{ card_product.url | escape }}">
+  <div class="fem-search-card__media">
+    {%- if card_image != blank -%}
+      <img class="fem-search-card__image" src="{{ card_image | image_url: width: 640 }}" srcset="{{ card_image | image_url: width: 360 }} 360w, {{ card_image | image_url: width: 640 }} 640w, {{ card_image | image_url: width: 960 }} 960w" sizes="(max-width: 575px) 45vw, (max-width: 1024px) 30vw, 320px" alt="{{ card_product.title | escape }}" width="{{ card_image.width }}" height="{{ card_image.height }}" loading="lazy" decoding="async">
+    {%- endif -%}
+    {%- if hover_image != blank -%}
+      <img class="fem-search-card__image fem-search-card__image--hover" src="{{ hover_image | image_url: width: 640 }}" srcset="{{ hover_image | image_url: width: 360 }} 360w, {{ hover_image | image_url: width: 640 }} 640w, {{ hover_image | image_url: width: 960 }} 960w" sizes="(max-width: 575px) 45vw, (max-width: 1024px) 30vw, 320px" alt="" width="{{ hover_image.width }}" height="{{ hover_image.height }}" loading="lazy" decoding="async" aria-hidden="true">
+    {%- endif -%}
+  </div>
+  <div class="fem-search-card__body">
+    <h3 class="fem-search-card__title">{{ card_product.title | escape }}</h3>
+    <div class="fem-search-card__stars" aria-hidden="true">
+      {%- for star in (1..5) -%}
+        <svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"/></svg>
+      {%- endfor -%}
+    </div>
+    <div class="fem-search-card__prices">
+      <span class="fem-search-card__price">{{ card_variant.price | money }}</span>
+      {%- if card_variant.compare_at_price > card_variant.price -%}
+        <s class="fem-search-card__compare">{{ card_variant.compare_at_price | money }}</s>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- if card_variant.available == false -%}
+    <span class="fem-search-card__sold-out">{{ 'content.product_badge_sold_out' | t }}</span>
+  {%- endif -%}
+  <span class="fem-search-card__arrow" aria-hidden="true">
+    <svg viewBox="0 0 256 256" fill="currentColor" focusable="false"><path d="M232.49,112.49l-48,48a12,12,0,0,1-17-17L195,116H128a84.09,84.09,0,0,0-84,84,12,12,0,0,1-24,0A108.12,108.12,0,0,1,128,92h67L167.51,64.48a12,12,0,0,1,17-17l48,48A12,12,0,0,1,232.49,112.49Z"/></svg>
+  </span>
+</a>

@@ -9,7 +9,7 @@ export function enhanceAccessibility(root: ParentNode = document): void {
     const name = labels[icon] ?? (control.getAttribute('href') === '/' ? 'Fem — Inicio' : '');
     if (name) control.setAttribute('aria-label', name);
   });
-  root.querySelectorAll<HTMLElement>('[data-instant-action-type="open-dropdown"],[data-instant-action-type="open-overlay"]').forEach(button => {
-    button.setAttribute('aria-expanded', String(button.dataset.instantState === 'active'));
+  root.querySelectorAll<HTMLElement>('[data-fem-action-type="open-dropdown"],[data-fem-action-type="open-overlay"]').forEach(button => {
+    button.setAttribute('aria-expanded', String(button.dataset.femState === 'active'));
   });
 }

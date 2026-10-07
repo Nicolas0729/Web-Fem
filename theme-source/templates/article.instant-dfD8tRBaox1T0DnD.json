@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-dfD8tRBaox1T0DnD": {
-      "type": "instant-dfD8tRBaox1T0DnD",
+    "fem-article-flora": {
+      "type": "fem-article-flora",
       "settings": {}
     }
   },
   "order": [
-    "instant-dfD8tRBaox1T0DnD"
+    "fem-article-flora"
   ]
 }
 

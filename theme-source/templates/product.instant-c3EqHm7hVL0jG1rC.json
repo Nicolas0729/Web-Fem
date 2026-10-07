@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-c3EqHm7hVL0jG1rC": {
-      "type": "instant-c3EqHm7hVL0jG1rC",
+    "fem-product-amor": {
+      "type": "fem-product-amor",
       "settings": {}
     }
   },
   "order": [
-    "instant-c3EqHm7hVL0jG1rC"
+    "fem-product-amor"
   ]
 }
 

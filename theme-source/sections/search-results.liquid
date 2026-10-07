@@ -1,6 +1,8 @@
 
 
 <script fetchpriority="low" src="{{ 'results-list.js' | asset_url }}" type="module"></script>
+{{ 'fem-fonts.css' | asset_url | stylesheet_tag }}
+{{ 'fem-search-card.css' | asset_url | stylesheet_tag }}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <results-list
@@ -33,7 +35,7 @@
             data-product-id="{{ product.id }}"
             ref="cards[]"
           >
-            {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
+            {% render 'fem-search-card', card_product: product %}
           </li>
         {% endfor %}
       {% endcapture %}

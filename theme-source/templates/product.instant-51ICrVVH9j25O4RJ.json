@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-51ICrVVH9j25O4RJ": {
-      "type": "instant-51ICrVVH9j25O4RJ",
+    "fem-product-gomitas": {
+      "type": "fem-product-gomitas",
       "settings": {}
     }
   },
   "order": [
-    "instant-51ICrVVH9j25O4RJ"
+    "fem-product-gomitas"
   ]
 }
 

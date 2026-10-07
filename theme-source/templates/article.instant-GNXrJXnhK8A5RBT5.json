@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-GNXrJXnhK8A5RBT5": {
-      "type": "instant-GNXrJXnhK8A5RBT5",
+    "fem-article-microbiota": {
+      "type": "fem-article-microbiota",
       "settings": {}
     }
   },
   "order": [
-    "instant-GNXrJXnhK8A5RBT5"
+    "fem-article-microbiota"
   ]
 }
 

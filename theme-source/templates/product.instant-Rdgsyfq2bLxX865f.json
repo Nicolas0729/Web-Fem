@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-Rdgsyfq2bLxX865f": {
-      "type": "instant-Rdgsyfq2bLxX865f",
+    "fem-product-duo": {
+      "type": "fem-product-duo",
       "settings": {}
     }
   },
   "order": [
-    "instant-Rdgsyfq2bLxX865f"
+    "fem-product-duo"
   ]
 }
 

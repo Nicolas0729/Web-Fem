@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-C4vjxcdrCgVz59cD": {
-      "type": "instant-C4vjxcdrCgVz59cD",
+    "fem-collection": {
+      "type": "fem-collection",
       "settings": {}
     }
   },
   "order": [
-    "instant-C4vjxcdrCgVz59cD"
+    "fem-collection"
   ]
 }
 

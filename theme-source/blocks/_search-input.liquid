@@ -22,9 +22,9 @@
     >
       {{ 'content.search_input_label' | t }}
     </label>
-    <span class="svg-wrapper search__icon{{ color_scheme }}">
+    <button type="submit" class="button-unstyled svg-wrapper search__icon{{ color_scheme }}" aria-label="{{ 'content.search' | t }}">
       {{ 'icon-search.svg' | inline_asset_content }}
-    </span>
+    </button>
     <input
       name="type"
       value="product"
@@ -134,6 +134,7 @@
 
   search-page-input-component .search__icon {
     left: var(--margin-lg);
+    cursor: pointer;
 
     @media screen and (max-width: 749px) {
       left: var(--margin-md);

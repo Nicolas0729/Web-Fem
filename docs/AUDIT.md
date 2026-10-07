@@ -4,7 +4,9 @@
 
 Inventario obtenido del catálogo y del tema conectado: 30 productos (19 activos, 7 archivados, 4 borradores), 40 variantes públicas, 6 colecciones administrativas (5 públicas), 19 páginas, 6 blogs y 9 artículos. Se capturaron 66 documentos HTML y se verificaron 74 rutas locales. Datos fuente en `audit/`; la disponibilidad y los precios pueden cambiar en Shopify.
 
-La implementación conserva Horizon y el contenido generado por Instant. La portada se dividió en 12 snippets; ocho tarjetas comparten `fem-product-card`. No constituye todavía una reconstrucción independiente de todos los componentes de Instant.
+La portada utiliza las secciones nativas `fem-header`, `fem-home` y `fem-footer`, además del banner de aniversario. Nueve componentes organizan su contenido y ocho tarjetas comparten `fem-product-card`. Esta auditoría describe el estado de septiembre. La migración posterior de los componentes restantes se documenta en [NATIVE-THEME.md](NATIVE-THEME.md).
+
+El inventario y las 74 rutas anteriores corresponden a la auditoría inicial. La optimización del 29 de septiembre de 2026 comprobó los 66 documentos guardados y siete rutas en vivo; sus medidas y limitaciones están en [PERFORMANCE.md](PERFORMANCE.md).
 
 ## Cambios
 
@@ -13,7 +15,7 @@ La implementación conserva Horizon y el contenido generado por Instant. La port
 - Contenedores de testimonios sin destino convertidos a elementos no interactivos; enlace de correo legal preservado.
 - Enlaces internos normalizados, conservando parámetros y anclas.
 - Scripts de componentes cargados cuando aparecen sus elementos en el DOM.
-- Tipos de catálogo y carrito en TypeScript, foco visible y movimiento reducido.
+- Tipos de productos del inicio y carrito junto a sus módulos TypeScript, foco visible y movimiento reducido.
 - Dimensiones de imagen basadas en objetos Shopify o metadatos del archivo, sin inventar medidas.
 - Eliminación de una conversión de compra que el tema emitía en cada página sin transacción.
 - Minificación de CSS. El ahorro del manifiesto corresponde al total de assets, no a una página ni a una medición de Core Web Vitals.

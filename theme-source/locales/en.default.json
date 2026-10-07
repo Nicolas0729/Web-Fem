@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "fem_anniversary": {
+    "play": "Play video",
+    "pause": "Pause video"
+  },
   "accessibility": {
     "account": "Open account menu",
     "cart": "Cart",
@@ -276,6 +280,87 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable"
     }
+  },
+  "fem_cart": {
+    "title": "Shopping cart",
+    "close": "Close cart",
+    "open": "Open cart",
+    "loading": "Loading your cart…",
+    "updating": "Updating your cart…",
+    "updated": "Cart updated",
+    "retry": "Try again",
+    "shipping_progress": "Free shipping progress",
+    "empty": "Your cart is empty",
+    "empty_copy": "Find your favorites to take care of yourself.",
+    "explore": "Explore products",
+    "products": "Products in your cart",
+    "guide": "Intimate self-care guide",
+    "plan": "7-day anti-fungal plan",
+    "free": "Free",
+    "suggestions": "Complete your intimate care routine",
+    "secure": "Shop securely with Fem",
+    "total": "Total",
+    "checkout": "Checkout",
+    "payments": "Payment methods",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "quantity": "Quantity",
+    "remove": "Remove product",
+    "add": "Add to cart",
+    "shipping_remaining": "You are {amount} away from Free Shipping + GIFTS",
+    "shipping_reached": "You have earned Free Shipping!",
+    "saving": "Applied discounts:",
+    "promotion": "Our discounts end in:"
+  },
+  "gempages": {
+    "Carousel": {
+      "no_slider": "No Slider"
+    },
+    "Newsletter": {
+      "err_msg_default": "Can’t send email. Please try again later.",
+      "success_msg_default": "Thanks for subscribing"
+    },
+    "IconListV2": {
+      "icons_not_found": "Icons not found"
+    },
+    "IconList": {
+      "icons_not_found": "Icons not found"
+    },
+    "IconListHoz": {
+      "icons_not_found": "Icons not found"
+    },
+    "Product": {
+      "product_not_found": "Product not found"
+    },
+    "ProductList": {
+      "product_not_found": "Product Not Found!",
+      "no_products_found": "No products found!",
+      "no_related_products": "No related products!"
+    },
+    "ProductTitle": {
+      "product_not_found": "Product Not Found"
+    },
+    "ProductVariants": {
+      "please_select": "Please select an option"
+    },
+    "StockCounter": {
+      "let_buy_now": "<mark>HURRY!</mark> LET BUY NOW"
+    },
+    "Breadcrumb": {
+      "home": "Home"
+    }
+  },
+  "fem_scratch": {
+    "redemption_title": "Enter your email to redeem your discount",
+    "redemption_copy": "We will email you the details to use it on your first purchase.",
+    "eyebrow": "A gift for you",
+    "title": "Scratch & win",
+    "intro": "Discover a surprise for your first purchase.",
+    "prize": "Your Fem gift",
+    "purchase": "off your first purchase",
+    "scratch": "Scratch here",
+    "gesture": "Use your finger or mouse",
+    "revealed": "You have 10% off! Enter your email to redeem it.",
+    "steps": "1. Scratch · 2. Reveal · 3. Redeem"
   }
 }
-

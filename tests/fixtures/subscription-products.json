@@ -1,0 +1,296 @@
+[
+  {
+    "handle": "duo-perfecto",
+    "sectionId": "template--19754959732824__instant-Rdgsyfq2bLxX865f",
+    "options": [
+      {
+        "name": "Tipo de compra",
+        "position": 1,
+        "values": [
+          "Compra Única 1",
+          "Compra única 2",
+          "Suscripción 1",
+          "Suscripción 2"
+        ]
+      },
+      {
+        "name": "Cantidad",
+        "position": 2,
+        "values": [
+          "1 Unidad",
+          "2 Unidades"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": 43656647606360,
+        "options": [
+          "Compra Única 1",
+          "1 Unidad"
+        ],
+        "price": 10392000,
+        "available": true
+      },
+      {
+        "id": 43656647704664,
+        "options": [
+          "Compra Única 1",
+          "2 Unidades"
+        ],
+        "price": 20780000,
+        "available": true
+      },
+      {
+        "id": 44093818568792,
+        "options": [
+          "Compra única 2",
+          "1 Unidad"
+        ],
+        "price": 10392000,
+        "available": true
+      },
+      {
+        "id": 44093818601560,
+        "options": [
+          "Compra única 2",
+          "2 Unidades"
+        ],
+        "price": 20780000,
+        "available": true
+      },
+      {
+        "id": 43656647639128,
+        "options": [
+          "Suscripción 1",
+          "1 Unidad"
+        ],
+        "price": 11490000,
+        "available": false
+      },
+      {
+        "id": 43656647737432,
+        "options": [
+          "Suscripción 1",
+          "2 Unidades"
+        ],
+        "price": 18990000,
+        "available": true
+      },
+      {
+        "id": 43915542298712,
+        "options": [
+          "Suscripción 2",
+          "1 Unidad"
+        ],
+        "price": 11490000,
+        "available": true
+      },
+      {
+        "id": 43915542331480,
+        "options": [
+          "Suscripción 2",
+          "2 Unidades"
+        ],
+        "price": 18990000,
+        "available": true
+      }
+    ]
+  },
+  {
+    "handle": "fem-mom-impulso-natural-de-leche-materna",
+    "sectionId": "template--19754959667288__instant-5M861mKsQ7EVXmGJ",
+    "options": [
+      {
+        "name": "Tipo de compra",
+        "position": 1,
+        "values": [
+          "Compra única 1",
+          "Compra única 2",
+          "Suscripción 1",
+          "Suscripción 2"
+        ]
+      },
+      {
+        "name": "Cantidad",
+        "position": 2,
+        "values": [
+          "1 unidad",
+          "2 unidades"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": 43661534298200,
+        "options": [
+          "Compra única 1",
+          "1 unidad"
+        ],
+        "price": 9350000,
+        "available": true
+      },
+      {
+        "id": 43661534330968,
+        "options": [
+          "Compra única 1",
+          "2 unidades"
+        ],
+        "price": 16990000,
+        "available": true
+      },
+      {
+        "id": 44093825384536,
+        "options": [
+          "Compra única 2",
+          "1 unidad"
+        ],
+        "price": 9350000,
+        "available": true
+      },
+      {
+        "id": 44093825417304,
+        "options": [
+          "Compra única 2",
+          "2 unidades"
+        ],
+        "price": 16990000,
+        "available": true
+      },
+      {
+        "id": 43661534363736,
+        "options": [
+          "Suscripción 1",
+          "1 unidad"
+        ],
+        "price": 8990000,
+        "available": true
+      },
+      {
+        "id": 43661534396504,
+        "options": [
+          "Suscripción 1",
+          "2 unidades"
+        ],
+        "price": 14990000,
+        "available": true
+      },
+      {
+        "id": 43661534429272,
+        "options": [
+          "Suscripción 2",
+          "1 unidad"
+        ],
+        "price": 8990000,
+        "available": true
+      },
+      {
+        "id": 43661534462040,
+        "options": [
+          "Suscripción 2",
+          "2 unidades"
+        ],
+        "price": 14990000,
+        "available": true
+      }
+    ]
+  },
+  {
+    "handle": "probiotico-vaginal-en-capsulas-x100-unidades",
+    "sectionId": "template--19754959306840__instant-FziHfOxyaRbyU98Z",
+    "options": [
+      {
+        "name": "Tipo de compra",
+        "position": 1,
+        "values": [
+          "Compra Única 1",
+          "Compra Única 2",
+          "Suscripción 1",
+          "Suscripción 2"
+        ]
+      },
+      {
+        "name": "Cantidad",
+        "position": 2,
+        "values": [
+          "1 unidad",
+          "2 unidades"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": 43659069325400,
+        "options": [
+          "Compra Única 1",
+          "1 unidad"
+        ],
+        "price": 9350000,
+        "available": true
+      },
+      {
+        "id": 43659069358168,
+        "options": [
+          "Compra Única 1",
+          "2 unidades"
+        ],
+        "price": 16990000,
+        "available": true
+      },
+      {
+        "id": 44093805658200,
+        "options": [
+          "Compra Única 2",
+          "1 unidad"
+        ],
+        "price": 9350000,
+        "available": true
+      },
+      {
+        "id": 44093805690968,
+        "options": [
+          "Compra Única 2",
+          "2 unidades"
+        ],
+        "price": 16990000,
+        "available": true
+      },
+      {
+        "id": 43659069390936,
+        "options": [
+          "Suscripción 1",
+          "1 unidad"
+        ],
+        "price": 8990000,
+        "available": true
+      },
+      {
+        "id": 43659069423704,
+        "options": [
+          "Suscripción 1",
+          "2 unidades"
+        ],
+        "price": 14990000,
+        "available": true
+      },
+      {
+        "id": 43659069456472,
+        "options": [
+          "Suscripción 2",
+          "1 unidad"
+        ],
+        "price": 8990000,
+        "available": true
+      },
+      {
+        "id": 43659069489240,
+        "options": [
+          "Suscripción 2",
+          "2 unidades"
+        ],
+        "price": 14990000,
+        "available": true
+      }
+    ]
+  }
+]

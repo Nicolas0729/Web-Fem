@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-I6WNGhZa0FLLm5XT": {
-      "type": "instant-I6WNGhZa0FLLm5XT",
+    "fem-product-gomas-jabon": {
+      "type": "fem-product-gomas-jabon",
       "settings": {}
     }
   },
   "order": [
-    "instant-I6WNGhZa0FLLm5XT"
+    "fem-product-gomas-jabon"
   ]
 }
 

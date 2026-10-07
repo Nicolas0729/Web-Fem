@@ -20,9 +20,9 @@ test('All audited documents lose broken links without changing product content o
  }
 });
 test('Legal wrapper is noninteractive and keeps its mailto link',()=>{
- const source=readFileSync('theme-source/sections/instant-Wa2LQXfKdS1XVGsU.liquid','utf8');
+ const source=readFileSync('theme-source/sections/fem-subscription-terms.liquid','utf8');
  const repaired=repairNavigation(source,true);
- assert.match(repaired,/<div as="p"|<div data-instant-type="text" class="ipWMBvNfOCI940U8M"/);
+ assert.match(repaired,/<div as="p"|<div data-fem-type="text" class="ipWMBvNfOCI940U8M"/);
  assert.ok(repaired.includes('href="mailto:pqrs@grupomsm.co"'));
  assert.ok(!repaired.includes('href=""'));
 });

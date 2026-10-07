@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-iEhqD7KvvDZbMKkz": {
-      "type": "instant-iEhqD7KvvDZbMKkz",
+    "fem-product-soda": {
+      "type": "fem-product-soda",
       "settings": {}
     }
   },
   "order": [
-    "instant-iEhqD7KvvDZbMKkz"
+    "fem-product-soda"
   ]
 }
 

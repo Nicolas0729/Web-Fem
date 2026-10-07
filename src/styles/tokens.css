@@ -21,11 +21,51 @@
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .instant-scroll-trigger--hidden { opacity: 1 !important; transform: none !important; }
+  .fem-view-scroll-trigger--hidden { opacity: 1 !important; transform: none !important; }
 }
 
 /* Decorative builder layers must not intercept the native video controls. */
-.fem-community-video .instant-video-fill__overlay,
-.fem-community-video .instant-video__fallback { pointer-events: none; }
-.fem-community-video .instant-video__fallback[hidden] { display: none !important; }
+.fem-community-video .fem-view-video-fill__overlay,
+.fem-community-video .fem-view-video__fallback { pointer-events: none; }
+.fem-community-video .fem-view-video__fallback[hidden] { display: none !important; }
 .fem-community-video video { z-index: 1; }
+
+/* Native Fem interactions: scroll containers, marquee and menu positioning. */
+.fem-native.fem-home [data-fem-carousel] [data-fem-carousel-viewport] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x pan-y;
+}
+.fem-native [data-fem-carousel-viewport]::-webkit-scrollbar { display: none; }
+.fem-native [data-fem-carousel-track] > * { scroll-snap-align: start; }
+.fem-native [data-fem-carousel-prev]:disabled,
+.fem-native [data-fem-carousel-next]:disabled { opacity: .35; cursor: default; }
+.fem-native.fem-home .fem-marquee .fem-marquee__track { animation: fem-marquee-scroll var(--fem-marquee-duration,30s) linear infinite; }
+.fem-native.fem-home .fem-marquee:hover .fem-marquee__track,
+.fem-native.fem-home .fem-marquee:active .fem-marquee__track { animation-play-state: paused; }
+@keyframes fem-marquee-scroll { to { transform: translateX(var(--fem-marquee-distance,-100%)); } }
+.fem-native .fem-dropdown { translate: -50% 0; }
+.fem-community-video__overlay,
+.fem-community-video__fallback { pointer-events: none; }
+.fem-community-video__fallback[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .fem-reveal--hidden { transform: none !important; opacity: 1 !important; }
+}
+
+/* Native catalog galleries use browser scrolling instead of a third-party slider. */
+.fem-view [data-fem-type="slider"].fem-view-slider,
+.fem-view [data-fem-type="thumbnails"].fem-view-slider {
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
+  scroll-snap-type: x mandatory; overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+}
+.fem-view .fem-view-slider::-webkit-scrollbar { display: none; }
+.fem-view .fem-view-slider > .fem-view-slider-wrapper { display: flex; transform: none; width: 100%; }
+.fem-view .fem-view-slider > .fem-view-slider-wrapper > * { scroll-snap-align: start; flex-shrink: 0; }
+.fem-view .fem-view-slider[data-fem-axis="vertical"] { overflow-x: hidden; overflow-y: auto; scroll-snap-type: y mandatory; }
+.fem-view .fem-view-overlay--lightbox > .fem-view-slider-container { width: 100%; min-width: 0; }
+.fem-view [aria-disabled="true"][data-fem-action-type^="add-to-"] { cursor: wait; }
+.fem-view .fem-product-error { color: #9f3838; font: 500 14px/1.4 var(--fem-font-body); padding: 12px 0; }

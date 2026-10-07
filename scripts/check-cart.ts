@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {writeFile} from 'node:fs/promises';
-import type {Cart} from '../src/types/shopify.ts';
+import type {CartState} from '../src/lib/cart.ts';
 const jar=new Map<string,string>();
 const steps:string[]=[];
 async function request(path:string,body?:object):Promise<unknown>{
@@ -10,11 +10,11 @@ async function request(path:string,body?:object):Promise<unknown>{
 }
 const variant=43661845299288;
 try{
- const initial=await request('/cart.js') as Cart;assert.equal(initial.item_count,0,'Test must start with an isolated empty cart');steps.push('Carrito nuevo vacío');
+ const initial=await request('/cart.js') as CartState;assert.equal(initial.item_count,0,'Test must start with an isolated empty cart');steps.push('Carrito nuevo vacío');
  await request('/cart/add.js',{items:[{id:variant,quantity:1}]});
- const added=await request('/cart.js') as Cart;assert.equal(added.item_count,1);assert.equal(added.items[0].variant_id,variant);steps.push('Añadir variante real');
- const changed=await request('/cart/change.js',{id:added.items[0].key,quantity:2}) as Cart;assert.equal(changed.item_count,2);assert.equal(changed.items[0].quantity,2);steps.push('Actualizar cantidad');
- const removed=await request('/cart/change.js',{id:changed.items[0].key,quantity:0}) as Cart;assert.equal(removed.item_count,0);steps.push('Eliminar producto');
+ const added=await request('/cart.js') as CartState;assert.equal(added.item_count,1);assert.equal(added.items[0].variant_id,variant);steps.push('Añadir variante real');
+ const changed=await request('/cart/change.js',{id:added.items[0].key,quantity:2}) as CartState;assert.equal(changed.item_count,2);assert.equal(changed.items[0].quantity,2);steps.push('Actualizar cantidad');
+ const removed=await request('/cart/change.js',{id:changed.items[0].key,quantity:0}) as CartState;assert.equal(removed.item_count,0);steps.push('Eliminar producto');
  await writeFile('audit/cart-check.json',JSON.stringify({checkedAt:new Date().toISOString(),passed:true,steps,purchaseSubmitted:false},null,2));
  console.log('Carrito: '+steps.join(' → ')+'. Sin pedido ni pago.');
 }catch(error){

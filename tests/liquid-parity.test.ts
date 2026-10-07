@@ -1,43 +1,57 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
-import {resolve} from 'node:path';
-import {Liquid} from 'liquidjs';
+import {readFileSync} from 'node:fs';
 import {load} from 'cheerio';
-import {repairNavigation} from '../src/lib/navigation.ts';
-import {improveThemeMarkup} from '../src/lib/theme-quality.ts';
-interface Image {src:string;width:number;height:number;alt:string|null}
-interface Variant {id:number;available:boolean;price:number;compare_at_price:number|null;featured_image?:Image|null}
-interface StoreProduct {handle:string;title:string;id:number;variants:Variant[];media:{preview_image:Image}[];url:string}
-function engine():Liquid {
- const liquid=new Liquid({root:resolve('theme-dev/snippets'),extname:'.liquid',strictFilters:true});
- for(const tag of ['doc','schema'])liquid.registerTag(tag,{parse(_token,tokens){this.liquid.parser.parseStream(tokens).on(`tag:end${tag}`,function(){this.stop();}).start();},render(){return '';}});
- liquid.registerFilter('asset_url',(value:string)=>`/__theme/${value}`);
- liquid.registerFilter('stylesheet_tag',(value:string)=>`<link rel="stylesheet" href="${value}">`);
- liquid.registerFilter('image_url',(value:Image|undefined,...args:unknown[])=>{
-  if(!value?.src)return '';const width=(args.find(a=>Array.isArray(a)&&a[0]==='width') as [string,number]|undefined)?.[1];
-  const url=new URL(value.src,'https://femprobiotics.co');if(width)url.searchParams.set('width',String(width));return url.href;
+import {transformStorefront} from '../server/transform.ts';
+import {productsFromStorefront,renderNativeSection} from '../server/native-home.ts';
+const fixture=readFileSync(new URL('./fixtures/native-home.html',import.meta.url),'utf8');
+const original=load(fixture);
+const rendered=load(transformStorefront(fixture,'/'));
+const normalized=(text:string)=>text.replace(/\s+/g,'');
+
+test('Native homepage keeps every product, live price and product destination',()=>{
+ const products=productsFromStorefront(fixture);
+ const cards=rendered('.fem-bestsellers__section article');
+ assert.equal(cards.length,8);
+ cards.each((_,node)=>{
+   const card=rendered(node),href=card.find('a').first().attr('href')!;
+   const product=products[href.split('/products/')[1]];
+   assert.ok(product,href);
+   assert.ok(card.text().includes(product.title));
+   assert.ok(card.text().includes('$'+new Intl.NumberFormat('es-CO',{minimumFractionDigits:2}).format(product.selected_or_first_available_variant.price/100)));
+   assert.equal(card.find('a').last().attr('href'),href);
+   assert.ok(card.find('img').attr('src')?.includes('/cdn/shop/files/'));
  });
- liquid.registerFilter('money',(cents:number)=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',minimumFractionDigits:2}).format(cents/100));
- return liquid;
-}
-function signature(html:string):unknown {
- const $=load(html);const root=$('[data-instant-type="root"]').first();
- return root.find('*').toArray().map(element=>{
-  const attributes={...element.attribs};
-  return {tag:element.tagName,attributes:Object.fromEntries(Object.entries(attributes).sort(([a],[b])=>a.localeCompare(b))),text:$(element).contents().filter((_,n)=>n.type==='text').text().replace(/\s+/g,' ').trim()};
- });
-}
-test('Refactored homepage renders the same DOM, text, prices and links as the source',async()=>{
- const products=JSON.parse(await readFile('audit/storefront-products.json','utf8')) as StoreProduct[];
- const allProducts=Object.fromEntries(products.map(p=>[p.handle,{...p,selected_or_first_available_variant:p.variants.find(v=>v.available)??p.variants[0],featured_image:p.media[0]?.preview_image}]));
- const context={section:{id:'test-home',location:'template',index:1,settings:{}},shop:{money_format:'${{amount}}'},all_products:allProducts,collections:{'todos-los-productos':{url:'/collections/todos-los-productos'}}};
- const original=improveThemeMarkup(repairNavigation(await readFile('theme-source/sections/instant-QpL8HGFa3rotk5kl.liquid','utf8'),true),JSON.parse(await readFile('audit/image-dimensions.json','utf8')));
- const updated=await readFile('theme-dev/sections/instant-QpL8HGFa3rotk5kl.liquid','utf8');
- const liquid=engine();
- const before=await liquid.parseAndRender(original,context,{globals:context}) as string;
- const after=await liquid.parseAndRender(updated,context,{globals:context}) as string;
- assert.deepEqual(signature(after),signature(before));
- const rendered=load(after);assert.equal(rendered('a[href="/products/duo-perfecto"]').length,2);
- assert.ok(rendered.text().includes('129.900'));
+ assert.equal(rendered('.fem-native a[href=""],.fem-native img[src=""]').length,0);
+});
+
+test('Native homepage has no Instant runtime, stylesheet, attributes or remote media',()=>{
+ assert.equal(rendered('[data-instant-id],.__instant').length,0);
+ for(const node of rendered('[src],[href],[data-src]').toArray())for(const key of ['src','href','data-src'])assert.doesNotMatch(node.attribs[key]??'',/instant\.so|instant-.*\.(js|css)/i);
+ assert.equal(rendered('[data-fem-carousel]').length,3);
+ assert.equal(rendered('.fem-faq__section [data-fem-accordion-item]').length,4);
+ assert.equal(rendered('.fem-anniversary,video[src$="fem-anniversary-video.mp4"]').length,0);
+ assert.equal(rendered('.fem-home-hero h1').text(),'Salud femenina');
+ assert.deepEqual(rendered('.fem-home-hero__actions a').map((_,el)=>rendered(el).attr('href')).get(),['/collections/todos-los-productos','/pages/quiz1']);
+ assert.equal(rendered('.fem-home-hero__image').attr('loading'),'eager');
+ assert.equal(rendered('.fem-home-hero__benefits li').length,4);
+});
+
+test('FAQ copy, article destinations and SVG references survive the migration',()=>{
+ const before=original('[data-instant-id="QpL8HGFa3rotk5kl"]');
+ const oldAnswers=before.find('[data-instant-type="accordion-content"]').map((_,e)=>normalized(original(e).text())).get();
+ const answers=rendered('.fem-faq__section [data-fem-accordion-content]').map((_,e)=>normalized(rendered(e).text())).get();
+ assert.deepEqual(answers,oldAnswers);
+ const destinations=(root:ReturnType<typeof load>,selector:string)=>root(selector).find('a[href^="https://www."]').map((_,e)=>root(e).attr('href')).get();
+ assert.deepEqual(destinations(rendered,'.fem-press__section'),destinations(original,'.iqAioqgfc8sFe8FBL'));
+ rendered('.fem-native use[href^="#fem-"]').each((_,e)=>assert.equal(rendered(rendered(e).attr('href')!).length,1));
+});
+
+test('A product without a discount hides its badge and comparison price',()=>{
+ const products=productsFromStorefront(fixture),product=products['duo-perfecto'];
+ product.selected_or_first_available_variant.compare_at_price=null;
+ const $=load(renderNativeSection('home',products));
+ const card=$('.fem-bestsellers__section article').first();
+ assert.match(card.find('.fem-bestsellers__layout-3').attr('style')??'',/display:\s*none/);
+ assert.match(card.find('.fem-bestsellers__span-2').attr('style')??'',/display:\s*none/);
 });

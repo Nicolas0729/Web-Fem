@@ -8,6 +8,10 @@
  * ------------------------------------------------------------
  */
 {
+  "fem_anniversary": {
+    "play": "Reproducir video",
+    "pause": "Pausar video"
+  },
   "accessibility": {
     "play_model": "Reproducir el modelo 3D",
     "play_video": "Reproducir el video",
@@ -330,6 +334,49 @@
     "Breadcrumb": {
       "home": "Home"
     }
+  },
+  "fem_cart": {
+    "title": "Carrito de compras",
+    "close": "Cerrar carrito",
+    "open": "Abrir carrito",
+    "loading": "Cargando tu carrito…",
+    "updating": "Actualizando tu carrito…",
+    "updated": "Carrito actualizado",
+    "retry": "Volver a intentar",
+    "shipping_progress": "Progreso para envío gratis",
+    "empty": "Tu carrito está vacío",
+    "empty_copy": "Encuentra tus favoritos para cuidar de ti.",
+    "explore": "Explorar productos",
+    "products": "Productos en tu carrito",
+    "guide": "Guía de Autocuidado íntimo",
+    "plan": "Plan 7 días Anti-hongos",
+    "free": "Gratis",
+    "suggestions": "Completa y acelera tu transformación íntima",
+    "secure": "Tu compra, segura con Fem",
+    "total": "Total",
+    "checkout": "Ir a pagar",
+    "payments": "Medios de pago",
+    "decrease": "Reducir cantidad",
+    "increase": "Aumentar cantidad",
+    "quantity": "Cantidad",
+    "remove": "Eliminar producto",
+    "add": "Añadir al carrito",
+    "shipping_remaining": "Te faltan {amount} para recibir Envío Gratis + REGALOS",
+    "shipping_reached": "Has recibido Envío Gratis!",
+    "saving": "Descuentos aplicados:",
+    "promotion": "Nuestros descuentos terminan en:"
+  },
+  "fem_scratch": {
+    "redemption_title": "Ingresa tu correo para redimir tu descuento",
+    "redemption_copy": "Te enviaremos los detalles para usarlo en tu primera compra.",
+    "eyebrow": "Un regalo para ti",
+    "title": "Raspa y gana",
+    "intro": "Descubre la sorpresa que tenemos para tu primera compra.",
+    "prize": "Tu regalo Fem",
+    "purchase": "de descuento en tu primera compra",
+    "scratch": "Raspa aquí",
+    "gesture": "Usa tu dedo o el mouse",
+    "revealed": "¡Tienes un 10% de descuento! Deja tu correo para redimirlo.",
+    "steps": "1. Raspa · 2. Descubre · 3. Redime"
   }
 }
-

@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-QNTWAEkArGNf5gXw": {
-      "type": "instant-QNTWAEkArGNf5gXw",
+    "fem-product-trio": {
+      "type": "fem-product-trio",
       "settings": {}
     }
   },
   "order": [
-    "instant-QNTWAEkArGNf5gXw"
+    "fem-product-trio"
   ]
 }
 

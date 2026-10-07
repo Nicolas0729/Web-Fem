@@ -1,0 +1,116 @@
+
+<div class="fem-native fem-footer" data-section-id="{{ section.id }}">
+  {%- liquid
+    assign preload = true
+    if section.location == 'footer'
+      assign preload = false
+    elsif section.location == 'template' and section.index > 2
+      assign preload = false
+    endif
+  -%}
+  {{ 'fem-footer.css' | asset_url | stylesheet_tag: preload: preload -}}
+  <div class="fem-footer__root">
+<div class="fem-footer__layout" id="fem-footer__layout">
+<div class="fem-footer__layout-2">
+<div class="fem-footer__layout-3">
+<div class="fem-footer__media">
+<img alt="" src="{{ 'fem-logo-fem-web-a760cdd1.svg' | asset_url }}" width="565" height="177" decoding="async" loading="eager" fetchpriority="high" class="fem-media fem-image fem-image__main">
+</div>
+<div class="fem-footer__layout-4">
+<a class="fem-footer__link" href="https://www.instagram.com/femprobiotics/" target="_blank" rel="noopener noreferrer">
+<div class="fem-footer__icon">
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-icon">
+<title>instagram-logo</title>
+<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM176,20H80A60.07,60.07,0,0,0,20,80v96a60.07,60.07,0,0,0,60,60h96a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,176,20Zm36,156a36,36,0,0,1-36,36H80a36,36,0,0,1-36-36V80A36,36,0,0,1,80,44h96a36,36,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Z">
+</path>
+</svg>
+</div>
+</a>
+<a class="fem-footer__link-2" href="https://www.tiktok.com/@femprobiotics" target="_blank" rel="noopener noreferrer">
+<div class="fem-footer__icon-2">
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-icon">
+<title>tiktok-logo</title>
+<path d="M224,68a44.05,44.05,0,0,1-44-44,12,12,0,0,0-12-12H128a12,12,0,0,0-12,12V156a16,16,0,1,1-22.85-14.47A12,12,0,0,0,100,130.69V88A12,12,0,0,0,85.9,76.19a79.35,79.35,0,0,0-47.08,27.74A81.84,81.84,0,0,0,20,156a80,80,0,0,0,160,0V122.67A107.47,107.47,0,0,0,224,132a12,12,0,0,0,12-12V80A12,12,0,0,0,224,68Zm-12,39.15a83.05,83.05,0,0,1-37-14.91A12,12,0,0,0,156,102v54a56,56,0,0,1-112,0,57.86,57.86,0,0,1,32-51.56V124a40,40,0,1,0,64,32V36h17.06A68.21,68.21,0,0,0,212,90.94Z">
+</path>
+</svg>
+</div>
+</a>
+</div>
+</div>
+<div class="fem-footer__layout-5">
+<div class="fem-footer__layout-6">
+<div class="fem-footer__layout-7">
+<a class="fem-footer__text" href="{{ routes['root_url'] }}" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>
+<strong>Inicio </strong>
+</p>
+</div>
+</a>
+
+              <a class="fem-footer__text-2" href="{{ routes.collections_url }}/todos-los-productos" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>
+<strong>Productos</strong>
+</p>
+</div>
+</a>
+<a class="fem-footer__text-3" href="{{ routes.collections_url }}" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>
+<strong>Colecciones</strong>
+</p>
+</div>
+</a>
+
+              <a class="fem-footer__text-4" href="/blogs/news/blog-post" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>
+<strong>blog</strong>
+</p>
+</div>
+</a>
+
+              <a class="fem-footer__text-5" href="/pages/contact" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>
+<strong>Contacto</strong>
+</p>
+</div>
+</a>
+</div>
+<div class="fem-footer__layout-8">
+<div class="fem-copy fem-footer__text-6">
+<p>PQRS: pqrs@grupomsm.co</p>
+</div>
+
+              <a class="fem-footer__text-7" href="/pages/policy-privac" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>Políticas de privacidad</p>
+</div>
+</a>
+
+              <a class="fem-footer__text-8" href="/pages/terminos-y-condiciones-de-suscripcion" rel="noopener noreferrer">
+<div class="fem-copy">
+<p>Términos y condiciones</p>
+</div>
+</a>
+</div>
+</div>
+<div class="fem-footer__layout-9">
+<div class="fem-copy fem-footer__text-9">
+<p>© 2026 Fem Probiotics.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Pie de página Fem",
+  "settings": []
+}
+{% endschema %}

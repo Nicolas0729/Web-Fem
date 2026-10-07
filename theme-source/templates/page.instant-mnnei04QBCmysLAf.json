@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-mnnei04QBCmysLAf": {
-      "type": "instant-mnnei04QBCmysLAf",
+    "fem-privacy": {
+      "type": "fem-privacy",
       "settings": {}
     }
   },
   "order": [
-    "instant-mnnei04QBCmysLAf"
+    "fem-privacy"
   ]
 }
 

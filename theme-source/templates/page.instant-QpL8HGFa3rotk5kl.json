@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-QpL8HGFa3rotk5kl": {
-      "type": "instant-QpL8HGFa3rotk5kl",
+    "fem-home": {
+      "type": "fem-home",
       "settings": {}
     }
   },
   "order": [
-    "instant-QpL8HGFa3rotk5kl"
+    "fem-home"
   ]
 }
 

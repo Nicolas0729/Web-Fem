@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "instant-X7WaA0KXxZvOdac0": {
-      "type": "instant-X7WaA0KXxZvOdac0",
+    "fem-product-completo": {
+      "type": "fem-product-completo",
       "settings": {}
     }
   },
   "order": [
-    "instant-X7WaA0KXxZvOdac0"
+    "fem-product-completo"
   ]
 }
 

@@ -1,0 +1,66 @@
+
+    <aside class="fem-featured__section fem-reveal fem-reveal--hidden fem-reveal--transform" id="fem-featured__section" data-fem-reveal="600" data-fem-replay="true">
+      {%- liquid
+        assign product_featured_2_handle = 'probiotico-vaginal-en-capsulas-x100-unidades'
+        assign product_featured_2 = all_products[product_featured_2_handle]
+        assign product_featured_2_variant = product_featured_2.selected_or_first_available_variant
+        if product_featured_2.selected_variant
+          assign product_featured_2_variant = product_featured_2.selected_variant
+        endif
+      -%}
+      <div class="fem-featured__layout">
+<div class="fem-featured__layout-2">
+<div class="fem-featured__media">
+<img alt="" sizes="(max-width: 600px) 72vw, (max-width: 1024px) 38vw, 300px" srcset="{{ 'fem-prob-home-mobile-88c3d24f.webp' | asset_url }} 1080w, {{ 'fem-prob-home-mobile-c0f20498.webp' | asset_url }} 828w, {{ 'fem-prob-home-mobile-ad2281da.webp' | asset_url }} 750w, {{ 'fem-prob-home-mobile-eb64493a.webp' | asset_url }} 640w, {{ 'fem-prob-home-mobile-1a1dd0bc.webp' | asset_url }} 360w, {{ 'fem-prob-home-mobile-b36dae2d.webp' | asset_url }} 1280w" src="{{ 'fem-prob-home-mobile-b36dae2d.webp' | asset_url }}" width="460" height="690" class="fem-media fem-image fem-image__main fem-responsive fem-responsive--desktop fem-responsive--laptop fem-responsive--tablet" loading="lazy" fetchpriority="low" decoding="async">
+<img alt="" sizes="(max-width: 600px) 72vw, (max-width: 1024px) 38vw, 300px" srcset="{{ 'fem-prob-home-mobile-88c3d24f.webp' | asset_url }} 1080w, {{ 'fem-prob-home-mobile-c0f20498.webp' | asset_url }} 828w, {{ 'fem-prob-home-mobile-ad2281da.webp' | asset_url }} 750w, {{ 'fem-prob-home-mobile-eb64493a.webp' | asset_url }} 640w, {{ 'fem-prob-home-mobile-1a1dd0bc.webp' | asset_url }} 360w, {{ 'fem-prob-home-mobile-b36dae2d.webp' | asset_url }} 1280w" src="{{ 'fem-prob-home-mobile-b36dae2d.webp' | asset_url }}" width="460" height="690" class="fem-media fem-image fem-image__main fem-responsive fem-responsive--mobile" loading="lazy" fetchpriority="low" decoding="async">
+</div>
+</div>
+<div class="fem-featured__layout-3">
+<div class="fem-featured__layout-4">
+<p class="fem-featured__product-title">{{ product_featured_2.title }}</p>
+<p class="fem-featured__text">{{ product_featured_2.vendor }}</p>
+</div>
+<div class="fem-featured__layout-5">
+<p class="fem-featured__price">
+              {%- liquid
+                assign variant_price = product_featured_2_variant.price
+                if product_featured_2_variant.selected_selling_plan_allocation
+                  assign variant_price = product_featured_2_variant.selected_selling_plan_allocation.price
+                endif
+              -%}
+              {{- variant_price | money -}}
+            </p>
+            {%- liquid
+              assign style = ''
+              assign compare_at_price = product_featured_2_variant.compare_at_price
+              assign variant_price = product_featured_2_variant.price
+              if product_featured_2_variant.selected_selling_plan_allocation
+                assign compare_at_price = product_featured_2_variant.selected_selling_plan_allocation.compare_at_price
+                assign variant_price = product_featured_2_variant.selected_selling_plan_allocation.price
+              endif
+              if compare_at_price <= variant_price or compare_at_price == 0 or compare_at_price == null
+                assign style = 'style="display: none;"'
+              endif
+            -%}
+            <span class="fem-featured__span" {{- style -}}>
+              {{- compare_at_price | money -}}
+            </span>
+</div>
+<div class="fem-featured__layout-6">
+<a class="fem-featured__link" href="{{ product_featured_2.url }}" rel="noopener noreferrer">
+<div class="fem-copy fem-featured__text-2">
+<p>Lo quiero</p>
+</div>
+<div class="fem-featured__icon">
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="fem-icon">
+<title>shopping-cart</title>
+<path d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16h18L59.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,152,204a28,28,0,1,0,28-28H83.17a8,8,0,0,1-7.87-6.57L72.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,222.14,58.87ZM180,192a12,12,0,1,1-12,12A12,12,0,0,1,180,192Zm-96,0a12,12,0,1,1-12,12A12,12,0,0,1,84,192Z">
+</path>
+</svg>
+</div>
+</a>
+<p class="fem-featured__product-title-2">{{ product_featured_2.title }}</p>
+</div>
+</div>
+</div>
+</aside>

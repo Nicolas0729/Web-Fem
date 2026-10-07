@@ -1,0 +1,63 @@
+@font-face {
+  font-family:'Fem Home Display';
+  src:url(fem-behind-the-nineties-sans-bd-it-6a2c3006.woff2) format('woff2');
+  font-weight:700;
+  font-style:italic;
+  font-display:swap;
+}
+.fem-home .fem-home-hero { display:grid; align-items:center; width:100%; min-height:100svh; padding:120px 48px; background:var(--hero-background,#ffacac); color:#fff; font-family:Poppins,Arial,sans-serif; }
+.fem-home-hero__inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center; gap:120px; width:100%; max-width:1374px; margin:0 auto; }
+.fem-home .fem-home-hero__title { margin:0 0 16px; color:inherit; font:italic 700 56px/1.08 'Fem Home Display',Georgia,serif; letter-spacing:-1.2px; text-transform:none; }
+.fem-home .fem-home-hero__description { margin:0 0 10px; color:inherit; font-size:15px; font-weight:400; line-height:1.6; }
+.fem-home-hero__actions { display:flex; flex-wrap:wrap; gap:15px; }
+.fem-home .fem-home-hero__button { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:52px; padding:13px 30px; border-radius:999px; background:var(--hero-accent,#f17e7e); color:#fff; font:600 18px/1.4 Poppins,Arial,sans-serif; text-decoration:none; transition:transform 180ms ease,box-shadow 180ms ease; }
+.fem-home .fem-home-hero__button--secondary { background:#fff; color:var(--hero-accent,#f17e7e); }
+.fem-home-hero__button svg { width:20px; height:20px; flex-shrink:0; stroke-width:1.3; }
+.fem-home .fem-home-hero__button:hover { transform:translateY(-2px); box-shadow:0 5px 14px #bd3e3422; }
+.fem-home .fem-home-hero__guarantees { display:flex; flex-wrap:wrap; gap:8px 20px; margin:12px 0 20px; padding:0; list-style:none; font-size:14px; font-weight:600; line-height:1.5; }
+.fem-home-hero__guarantees li { display:flex; align-items:center; gap:7px; }
+.fem-home-hero__guarantees svg { width:16px; height:16px; flex-shrink:0; color:var(--hero-accent,#f17e7e); }
+.fem-home .fem-home-hero__benefits { display:grid; grid-template-columns:1fr 1fr; gap:20px 24px; margin:0; padding:20px 0 0; border-top:1px solid var(--hero-accent,#f17e7e); list-style:none; font-size:14px; font-weight:400; line-height:1.4; }
+.fem-home-hero__benefits li { display:flex; align-items:center; gap:14px; }
+.fem-home-hero__benefits svg { width:28px; height:28px; flex-shrink:0; color:var(--hero-accent,#f17e7e); }
+.fem-home-hero__media { display:flex; align-items:center; justify-content:center; min-width:0; }
+.fem-home .fem-home-hero__image { display:block; width:360px; max-width:100%; height:auto; object-fit:contain; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout { padding:18px 17px; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout-2 { min-height:66px; background:#fff7f7; border:0; box-shadow:0 3px 6px #bd3e3422; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__media { width:90px; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__media::before { content:''; position:absolute; inset:0; background:#f5797e; mask:url(fem-logo-fem-web-a760cdd1.svg) center/contain no-repeat; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__media img { opacity:0; }
+body:has(.fem-home-hero) .fem-native.fem-header :is(.fem-header__text,.fem-header__text-2,.fem-header__icon) { color:#f5797e; }
+body:has(.fem-home-hero) .fem-native.fem-header :is(.fem-header__text,.fem-header__text-2) { font-family:Grift,Poppins,Arial,sans-serif; font-size:16px; font-weight:800; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout-9 { min-height:46px; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__link-4 { background:#f17e7e; }
+body:has(.fem-home-hero) .fem-native.fem-header .fem-header__text-9 { color:#fff; }
+body:has(.fem-home-hero) .fem-native.fem-header :is(.fem-header__link-5,.fem-header__link-6,.fem-header__cart) { display:flex; align-items:center; justify-content:center; width:36px; height:36px; padding:8px; border-radius:50%; background:#c14b4b; color:#fff; }
+body:has(.fem-home-hero) .fem-native.fem-header :is(.fem-header__icon-3,.fem-header__icon-4) { color:#fff; width:20px; height:20px; }
+@media(max-width:1100px) {
+  .fem-home-hero__inner { gap:48px; }
+  .fem-home .fem-home-hero__title { font-size:48px; }
+  .fem-home .fem-home-hero__button { padding:12px 22px; font-size:16px; }
+  .fem-home .fem-home-hero__benefits { gap:16px; font-size:13px; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout-2 { padding:10px 24px; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout-5 { gap:4px; }
+}
+@media(max-width:749px) {
+  .fem-home .fem-home-hero { min-height:100svh; padding:116px 24px 48px; }
+  .fem-home-hero__inner { grid-template-columns:minmax(0,1fr); gap:32px; max-width:560px; }
+  .fem-home .fem-home-hero__title { font-size:42px; letter-spacing:-.7px; }
+  .fem-home .fem-home-hero__description { font-size:14px; }
+  .fem-home-hero__actions { gap:10px; }
+  .fem-home .fem-home-hero__button { flex:1 1 auto; gap:8px; padding:12px; font-size:15px; white-space:nowrap; }
+  .fem-home .fem-home-hero__guarantees { gap:8px 14px; font-size:12px; }
+  .fem-home .fem-home-hero__benefits { font-size:12px; gap:18px 14px; }
+  .fem-home-hero__benefits li { gap:9px; }
+  .fem-home-hero__benefits svg { width:24px; height:24px; }
+  .fem-home .fem-home-hero__image { width:min(65vw,300px); }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout { padding:12px; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout-2 { min-height:58px; padding:6px 16px; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__layout-5 { display:none; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__button-2 { display:flex; align-items:center; justify-content:center; width:36px; height:36px; padding:8px; border-radius:50%; background:#c14b4b; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__icon-2 { color:#fff; }
+  body:has(.fem-home-hero) .fem-native.fem-header .fem-header__media { width:76px; margin:0; }
+}

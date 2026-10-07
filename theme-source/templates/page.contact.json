@@ -78,8 +78,8 @@
         "padding-block-end": 0
       }
     },
-    "instant_9_di_qk5qkf55_xq_ziz_RtgVgd": {
-      "type": "instant-9DiQk5qkf55XQZiz",
+    "fem_view_9_di_qk5qkf55_xq_ziz_RtgVgd": {
+      "type": "fem-contact",
       "name": "Contacto-FEM",
       "settings": {
         "text_27XXS3rBVlK2QqIP": "<h3>Contacto</h3>",
@@ -160,7 +160,7 @@
   },
   "order": [
     "main",
-    "instant_9_di_qk5qkf55_xq_ziz_RtgVgd",
+    "fem_view_9_di_qk5qkf55_xq_ziz_RtgVgd",
     "section_nP4TRn"
   ]
 }
