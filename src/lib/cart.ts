@@ -4,7 +4,7 @@ export interface CartItem {
   featured_image?:{url:string;alt?:string};properties?:Record<string,unknown>;
   selling_plan_allocation?:{selling_plan:{name:string}};
 }
-export interface CartState {items:CartItem[];item_count:number;total_price:number;total_discount:number;currency:string}
+export interface CartState {attributes?:Record<string,string>;items:CartItem[];item_count:number;total_price:number;total_discount:number;currency:string}
 export interface AddItem {id:number;quantity:number;selling_plan?:number;properties?:Record<string,string>}
 export interface CartProduct {id:number;title:string;handle:string;url?:string;available:boolean;price:number;featured_image?:string;images?:string[];variants:{id:number;available:boolean;price:number}[]}
 
@@ -38,6 +38,7 @@ export class CartClient {
     if(!data)throw new Error('No pudimos cargar tu carrito. Inténtalo de nuevo.');
     return data as T;
   }
+  updateAttributes(attributes:Record<string,string>){return this.json<CartState>('cart/update.js',{attributes});}
   read(){return this.json<CartState>('cart.js');}
   async add(item:AddItem){await this.json('cart/add.js',{items:[item]});return this.read();}
   change(key:string,quantity:number){return this.json<CartState>('cart/change.js',{id:key,quantity});}

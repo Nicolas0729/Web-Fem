@@ -21,17 +21,37 @@
           <div class="fem-cart__gift"><img src="{{ 'fem-cart-plan.png' | asset_url }}" width="80" height="51" loading="lazy" alt="{{ 'fem_cart.plan' | t }}"><span>{{ 'fem_cart.plan' | t }}</span><b>{{ 'fem_cart.free' | t }}</b></div>
         </div>
       {% endif %}
+      <section class="fem-cart__payment-section" data-cart-payment-section hidden>
+        <fieldset class="fem-cart__payment-options">
+          <legend>{{ 'fem_cart.payment_title' | t }}</legend>
+          <label class="fem-cart__payment-option"><input type="radio" name="fem-payment" value="cod" data-cart-payment checked><span><strong>{{ 'fem_cart.cod_title' | t }}</strong><small>{{ 'fem_cart.cod_copy' | t }}</small></span></label>
+          <label class="fem-cart__payment-option"><input type="radio" name="fem-payment" value="prepaid" data-cart-payment><span><strong>{{ 'fem_cart.prepaid_title' | t }}</strong><small>{{ 'fem_cart.prepaid_copy' | t }}</small></span></label>
+        </fieldset>
+        <div class="fem-cart__satin" data-cart-satin data-unlocked="false">
+          <div class="fem-cart__bonnet">
+            {% if section.settings.satin_image != blank %}
+              <img src="{{ section.settings.satin_image | image_url: width: 320 }}" width="160" height="160" alt="{{ 'fem_cart.reward_name' | t }}" loading="lazy">
+            {% else %}
+              <img src="{{ 'fem-satin-bonnet-real.jpg' | asset_url }}" width="160" height="160" alt="{{ 'fem_cart.reward_alt' | t }}" loading="lazy">
+            {% endif %}
+            <span class="fem-cart__reward-lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></svg></span>
+            <span class="fem-cart__reward-check" aria-hidden="true">✓</span>
+          </div>
+          <div class="fem-cart__reward-copy"><span class="fem-cart__reward-badge" data-cart-satin-badge>{{ 'fem_cart.reward_exclusive' | t }}</span><h3>{{ 'fem_cart.reward_name' | t }}</h3><p data-cart-satin-state role="status" aria-live="polite">{{ 'fem_cart.reward_locked' | t }}</p><small>{{ 'fem_cart.reward_color' | t }}</small></div>
+        </div>
+        <p class="fem-cart__reward-terms">{{ 'fem_cart.reward_terms' | t }}</p>
+      </section>
       <section class="fem-cart__suggestions" data-cart-suggestions hidden><h3>{{ 'fem_cart.suggestions' | t }}</h3><ul data-cart-recommendations></ul></section>
     </div>
     <footer class="fem-cart__footer" data-cart-footer hidden>
       <div class="fem-cart__ribbon"><span data-cart-promo>{{ 'fem_cart.secure' | t }}</span><span data-cart-countdown hidden></span></div>
-      <div class="fem-cart__checkout"><div class="fem-cart__saving" data-cart-savings hidden></div><div class="fem-cart__total"><strong>{{ 'fem_cart.total' | t }}</strong><strong data-cart-total></strong></div><a class="fem-cart__pay" href="{{ routes.cart_url | replace: '/cart', '/checkout' }}" data-cart-checkout>{{ 'fem_cart.checkout' | t }}</a><div class="fem-cart__payments" data-cart-payments aria-label="{{ 'fem_cart.payments' | t }}">{% for payment in shop.enabled_payment_types limit: 7 %}<img src="{{ payment | payment_type_img_url }}" alt="{{ payment }}" width="38" height="24" loading="lazy">{% endfor %}</div></div>
+      <div class="fem-cart__checkout"><div class="fem-cart__saving" data-cart-savings hidden></div><div class="fem-cart__total"><strong>{{ 'fem_cart.total' | t }}</strong><strong data-cart-total></strong></div><a class="fem-cart__pay" href="{{ routes.cart_url | replace: '/cart', '/checkout' }}" data-cart-checkout>{{ 'fem_cart.checkout' | t }}</a><p class="fem-cart__payment-note" data-cart-payment-note></p><div class="fem-cart__payments" data-cart-payments aria-label="{{ 'fem_cart.payments' | t }}">{% for payment in shop.enabled_payment_types limit: 7 %}<img src="{{ payment | payment_type_img_url }}" alt="{{ payment }}" width="38" height="24" loading="lazy">{% endfor %}</div></div>
     </footer>
   </div>
   <template data-cart-item-template><li class="fem-cart__item"><a data-item-url tabindex="-1" aria-hidden="true"><img data-item-image width="64" height="64" loading="lazy" alt=""></a><div class="fem-cart__item-info"><a class="fem-cart__item-title" data-item-url data-item-title></a><p class="fem-cart__variant" data-item-variant hidden></p><p class="fem-cart__price"><s data-item-original hidden></s> <span data-item-price></span></p><div class="fem-cart__quantity"><button type="button" data-cart-minus aria-label="{{ 'fem_cart.decrease' | t }}">−</button><input type="number" min="0" max="999" step="1" inputmode="numeric" data-cart-quantity aria-label="{{ 'fem_cart.quantity' | t }}"><button type="button" data-cart-plus aria-label="{{ 'fem_cart.increase' | t }}">+</button></div></div><button type="button" class="fem-cart__remove" data-cart-remove aria-label="{{ 'fem_cart.remove' | t }}">×</button></li></template>
   <template data-cart-recommendation-template><li class="fem-cart__recommendation"><a data-product-url tabindex="-1" aria-hidden="true"><img data-product-image width="48" height="48" loading="lazy" alt=""></a><div><a data-product-url data-product-title></a><p data-product-price></p></div><button type="button" data-cart-recommendation-add aria-label="{{ 'fem_cart.add' | t }}">+</button></li></template>
-  <script type="application/json" data-cart-config>{"root":{{ routes.root_url | json }},"threshold":{{ section.settings.shipping_threshold | times: 100 | json }},"endsAt":{{ section.settings.promotion_end | json }},"labels":{"shippingRemaining":{{ 'fem_cart.shipping_remaining' | t | json }},"shippingReached":{{ 'fem_cart.shipping_reached' | t | json }},"loading":{{ 'fem_cart.loading' | t | json }},"updating":{{ 'fem_cart.updating' | t | json }},"updated":{{ 'fem_cart.updated' | t | json }},"saving":{{ 'fem_cart.saving' | t | json }},"promotion":{{ 'fem_cart.promotion' | t | json }}}}</script>
+  <script type="application/json" data-cart-config>{"root":{{ routes.root_url | json }},"threshold":{{ section.settings.shipping_threshold | times: 100 | json }},"endsAt":{{ section.settings.promotion_end | json }},"labels":{"rewardUnlocked":{{ 'fem_cart.reward_unlocked' | t | json }},"rewardLocked":{{ 'fem_cart.reward_locked' | t | json }},"rewardFree":{{ 'fem_cart.reward_free' | t | json }},"rewardExclusive":{{ 'fem_cart.reward_exclusive' | t | json }},"prepaidNote":{{ 'fem_cart.prepaid_note' | t | json }},"codNote":{{ 'fem_cart.cod_note' | t | json }},"prepaidCta":{{ 'fem_cart.prepaid_cta' | t | json }},"codCta":{{ 'fem_cart.cod_cta' | t | json }},"shippingRemaining":{{ 'fem_cart.shipping_remaining' | t | json }},"shippingReached":{{ 'fem_cart.shipping_reached' | t | json }},"loading":{{ 'fem_cart.loading' | t | json }},"updating":{{ 'fem_cart.updating' | t | json }},"updated":{{ 'fem_cart.updated' | t | json }},"saving":{{ 'fem_cart.saving' | t | json }},"promotion":{{ 'fem_cart.promotion' | t | json }}}}</script>
 </dialog>
 {% schema %}
-{"name":"Carrito Fem","settings":[{"type":"number","id":"shipping_threshold","label":"Envío gratis desde (COP)","default":100000},{"type":"checkbox","id":"show_gifts","label":"Mostrar regalos al alcanzar el mínimo","default":true},{"type":"text","id":"promotion_end","label":"Fin real de promoción (fecha ISO)","info":"Opcional. Ejemplo: 2026-12-31T23:59:00-05:00. El contador solo aparece mientras esta fecha esté vigente."}]}
+{"name":"Carrito Fem","settings":[{"type":"image_picker","id":"satin_image","label":"Foto del gorro de satín","info":"Sin foto se muestra una ilustración de referencia."},{"type":"number","id":"shipping_threshold","label":"Envío gratis desde (COP)","default":100000},{"type":"checkbox","id":"show_gifts","label":"Mostrar regalos al alcanzar el mínimo","default":true},{"type":"text","id":"promotion_end","label":"Fin real de promoción (fecha ISO)","info":"Opcional. Ejemplo: 2026-12-31T23:59:00-05:00. El contador solo aparece mientras esta fecha esté vigente."}]}
 {% endschema %}

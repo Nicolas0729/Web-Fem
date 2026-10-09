@@ -100,3 +100,9 @@ Se retiraron archivos temporales de `work/`, informes de migraciones antiguas, e
 Se eliminaron 101 archivos entre fuentes, temporales y residuos de compilación, aproximadamente 9,7 MB locales. Esta reducción corresponde al proyecto en disco; los archivos sin uso ya no formaban parte de la descarga de la página. La compilación ahora retira automáticamente archivos obsoletos de `theme-dev` al terminar correctamente.
 
 Validación: compilación, TypeScript y 23 pruebas aprobadas; HTML idéntico antes/después en 67 documentos y assets conservados idénticos byte por byte. El carrito aislado permite añadir, cambiar cantidad y eliminar. La comparación visual automática sigue pendiente por el bloqueo de acceso del navegador; no se han medido nuevos tiempos de carga.
+
+### Gorro rosado por pago anticipado
+
+El carrito compartido ofrece contraentrega o pago anticipado para todos los productos. Un pedido no vacío con preferencia anticipada desbloquea la ilustración del gorro; contraentrega la bloquea. Se guarda `fem_payment_preference` (`cod` / `prepaid`) y `fem_satin_reward` (`pending_payment_confirmation` / vacío) mediante Cart Ajax. No se crea un SKU ni se modifica el precio. La foto puede sustituirse desde el ajuste «Foto del gorro de satín» de la sección.
+
+La selección del carrito es una preferencia, no una confirmación de cobro ni una restricción del método de pago de Shopify. Para entregar el regalo, operaciones debe verificar el pago anticipado real (un gorro por pedido); cualquier automatización de entrega debe comprobar el estado de pago y excluir contraentrega. Los atributos se conservan en el enlace de checkout de la vista local. Esta implementación no instala automatizaciones de fulfillment ni publica el tema.

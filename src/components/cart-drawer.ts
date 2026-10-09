@@ -1,3 +1,4 @@
+import {paymentPreference,paymentAttributes,satinRewardUnlocked,type PaymentPreference} from '../lib/cart-payment.ts';
 import {CartClient,addItemFromFields,cartMoney,shippingProgress,visibleCartItems,visibleCartCount,type CartState,type CartProduct,type AddItem} from '../lib/cart.ts';
 
 let initialized=false;
@@ -18,7 +19,7 @@ export function enhanceCartDrawer():void {
   const fail=(reason:unknown)=>{error.hidden=false;error.querySelector('span')!.textContent=reason instanceof Error?reason.message:'No pudimos actualizar tu carrito. Inténtalo de nuevo.';};
   const lock=(value:boolean)=>{
     busy=value;dialog.setAttribute('aria-busy',String(value));
-    dialog.querySelectorAll<HTMLButtonElement|HTMLInputElement>('[data-cart-items] button,[data-cart-items] input,[data-cart-recommendations] button').forEach(control=>control.disabled=value);
+    dialog.querySelectorAll<HTMLButtonElement|HTMLInputElement>('[data-cart-items] button,[data-cart-items] input,[data-cart-recommendations] button,[data-cart-payment]').forEach(control=>control.disabled=value);
     checkout.setAttribute('aria-disabled',String(value));
     status.textContent=value?config.labels.updating:'';
   };
@@ -58,8 +59,19 @@ export function enhanceCartDrawer():void {
     try{const products=await api.recommendations(productId);if(productId===suggestedFor){recommendations=products;renderRecommendations();}}
     catch{if(productId===suggestedFor){suggestedFor=0;recommendations=[];renderRecommendations();}}
   }
+  function renderPayment(state:CartState):void {
+    const preference=paymentPreference(state),unlocked=satinRewardUnlocked(state);
+    find('[data-cart-payment-section]').hidden=state.item_count===0;
+    dialog.querySelectorAll<HTMLInputElement>('[data-cart-payment]').forEach(input=>input.checked=input.value===preference);
+    const reward=find('[data-cart-satin]');reward.dataset.unlocked=String(unlocked);
+    find('[data-cart-satin-state]').textContent=unlocked?config.labels.rewardUnlocked:config.labels.rewardLocked;
+    find('[data-cart-satin-badge]').textContent=unlocked?config.labels.rewardFree:config.labels.rewardExclusive;
+    find('[data-cart-payment-note]').textContent=unlocked?config.labels.prepaidNote:config.labels.codNote;
+    checkout.textContent=unlocked?config.labels.prepaidCta:config.labels.codCta;
+  }
   function render(state:CartState):void {
     cart=state;
+    renderPayment(state);
     const items=visibleCartItems(state),count=visibleCartCount(state);
     const focused=document.activeElement as HTMLElement|null;
     const focusKey=focused?.closest<HTMLElement>('[data-item-key]')?.dataset.itemKey;
@@ -131,7 +143,23 @@ export function enhanceCartDrawer():void {
     const quantity=control.hasAttribute('data-cart-remove')?0:item.quantity+(control.hasAttribute('data-cart-plus')?1:-1);
     void mutate(()=>api.change(key,quantity));
   });
+  checkout.addEventListener('click',event=>{
+    if(busy||!cart?.item_count)event.preventDefault();
+  });
   dialog.addEventListener('change',event=>{
+    if(event.target instanceof HTMLInputElement && event.target.matches('[data-cart-payment]')){
+      if(busy||!cart)return;
+      const choice=event.target.value as PaymentPreference;
+      if(choice!=='cod'&&choice!=='prepaid')return;
+      // Animate immediately; checkout stays locked until Shopify confirms the save.
+      const confirmed=cart;
+      renderPayment({...confirmed,attributes:{...confirmed.attributes,...paymentAttributes(choice)}});
+      void mutate(async()=>{
+        try{return await api.updateAttributes(paymentAttributes(choice));}
+        catch(reason){renderPayment(confirmed);throw reason;}
+      });
+      return;
+    }
     if(!(event.target instanceof HTMLInputElement)||!event.target.matches('[data-cart-quantity]')||busy)return;
     const quantity=Number(event.target.value),key=event.target.closest<HTMLElement>('[data-item-key]')!.dataset.itemKey!;
     if(!Number.isInteger(quantity)||quantity<0||quantity>999){if(cart)render(cart);return;}
@@ -148,6 +176,30 @@ export function enhanceCartDrawer():void {
     const target=event.target instanceof Element?event.target:null;
     const opener=target?.closest<HTMLElement>('[data-fem-cart-open],[data-fem-action-type="open-cart"]');
     if(opener){event.preventDefault();event.stopImmediatePropagation();show();void refresh();return;}
+    const external=target?.closest<HTMLAnchorElement>('a[href]');
+    const destination=external?new URL(external.href,location.href):null;
+    if(destination?.hostname==='checkoutfem.com' && destination.pathname==='/checkout' && destination.searchParams.get('product')){
+      event.preventDefault();event.stopImmediatePropagation();
+      if(busy || external?.matches('[aria-disabled="true"],[data-fem-disabled="true"]'))return;
+      const handle=destination.searchParams.get('product')!;
+      const form=[...document.querySelectorAll<HTMLElement>('form[data-fem-form-product-url]')].find(form=>new URL(form.dataset.femFormProductUrl!,location.href).pathname===`/products/${handle}`);
+      if(form?.getAttribute('aria-busy')==='true')return;
+      if(form){try{void add(itemFrom(form));}catch(reason){show();fail(reason);}return;}
+      show();
+      void (async()=>{
+        await refreshing;
+        if(busy)return;
+        error.hidden=true;lock(true);
+        try{
+          const product=await api.json<CartProduct>(`products/${encodeURIComponent(handle)}.js`);
+          const explicit=destination.searchParams.get('variant');
+          const variant=explicit?product.variants.find(v=>String(v.id)===explicit):product.variants.find(v=>v.available);
+          if(!variant?.available)throw new Error('Esta opción no está disponible. Revisa el producto.');
+          render(await api.add({id:variant.id,quantity:1}));
+        }catch(reason){fail(reason);}finally{lock(false);}
+      })();
+      return;
+    }
     const control=target?.closest<HTMLElement>('[data-fem-cart-add],[data-fem-action-type="add-to-cart"]');if(!control)return;
     event.preventDefault();event.stopImmediatePropagation();if(busy&&!refreshing||control.matches('[disabled],[aria-disabled="true"],[data-fem-disabled="true"]')||control.closest('form[aria-busy="true"]'))return;
     try{void add(itemFrom(control));}catch(reason){show();fail(reason);}

@@ -310,7 +310,25 @@
     "shipping_remaining": "You are {amount} away from Free Shipping + GIFTS",
     "shipping_reached": "You have earned Free Shipping!",
     "saving": "Applied discounts:",
-    "promotion": "Our discounts end in:"
+    "promotion": "Our discounts end in:",
+    "payment_title": "How would you like to pay?",
+    "cod_title": "Cash on delivery",
+    "cod_copy": "Pay when it arrives",
+    "prepaid_title": "Pay in advance",
+    "prepaid_copy": "+ a satin bonnet gift",
+    "reward_title": "A little something for you",
+    "reward_name": "Satin bonnet",
+    "reward_locked": "Unlock it by paying in advance",
+    "reward_unlocked": "Your bonnet is unlocked!",
+    "reward_exclusive": "EXCLUSIVE GIFT",
+    "reward_free": "FREE WITH YOUR PAYMENT",
+    "reward_color": "Pink satin · a gift for you.",
+    "reward_terms": "One bonnet per order, once advance payment is confirmed.",
+    "reward_alt": "Illustration of a pink satin bonnet",
+    "cod_note": "You chose payment on delivery. Confirm the method at the next step.",
+    "prepaid_note": "Complete your advance payment to receive the bonnet.",
+    "cod_cta": "Continue with my order →",
+    "prepaid_cta": "Continue to advance payment →"
   },
   "gempages": {
     "Carousel": {

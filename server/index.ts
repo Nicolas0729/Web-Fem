@@ -61,8 +61,8 @@ async function serve(req:IncomingMessage,res:ServerResponse):Promise<void> {
   if(url.pathname==='/checkout'){
     const response=await fetch(STORE_ORIGIN+'/cart.js',{headers:{Cookie:req.headers.cookie??''},signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw new Error('Shopify cart unavailable');
-    const cart=await response.json() as {items:CheckoutLine[]};
-    const target=checkoutPermalink(cart.items);
+    const cart=await response.json() as {items:CheckoutLine[];attributes?:Record<string,string>};
+    const target=checkoutPermalink(cart.items,cart.attributes);
     if(target){res.writeHead(302,{Location:target}).end();return;}
     res.setHeader('Content-Type','text/html; charset=utf-8');
     res.end('<h1>Continúa en la tienda oficial</h1><p>Los planes de suscripción y los atributos especiales se validan en Shopify. Esta vista local no puede transferirlos mediante un enlace de carrito.</p><a href="https://femprobiotics.co/cart">Abrir tienda oficial</a><br><a href="/cart">Volver al carrito local</a>');return;
